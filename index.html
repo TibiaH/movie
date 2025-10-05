@@ -16,8 +16,12 @@
     <header>
         <div class="header__container">
         <div class="header__text">
-        <div class="header__title">3D-графика для сильных брендов</div>
-        <div class="header__button">Обсудить проект</div>
+        <div class="header__title">3D-графика</div>
+        <div class="header__subtitle">
+            <div class="header__subtitle_text">Под ключ с гарантией качества</div>
+            <div class="header__subtitle_icon">от 3 дней</div>
+        </div>
+        <button class="header__button" onclick="scrollToTarget()">Обсудить проект</button>
         </div>
         <div class="header__image">
             <div class="header__block">
@@ -41,31 +45,57 @@
     </div>
 
     <div class="ExamplesOfWork">
-        <div class="ExamplesOfWork__VideoBlock">
-            <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 33 (1).png" alt=""></div>
-            <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик “Yangen”</div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “Yangen”"'  data-video-url="https://youtu.be/ib_72fXT1X4?si=bicOcEGHd2WgD2Tc" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 33 (1).png" alt="Yangen ролик"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик "Yangen"</div>
+            </div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик "Название"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_2" data-video-description="Описание для эксплейнер ролика.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 35 (1).png" alt="Эксплейнер ролик"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик "Название"</div>
+            </div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик "Bork"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_3" data-video-description="Описание для продуктового ролика Bork.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 37 (1).png" alt="Bork ролик"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик "Bork"</div>
+            </div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик "Название"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_4" data-video-description="Описание для эксплейнер ролика.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 41.png" alt="Эксплейнер ролик"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик "Название"</div>
+            </div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик "Fanquip"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_5" data-video-description="Описание для рекламного ролика Fanquip.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 42.png" alt="Fanquip ролик"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик "Fanquip"</div>
+            </div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик "Название"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_6" data-video-description="Описание для рекламного ролика.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 43.png" alt="Рекламный ролик"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик "Название"</div>
+            </div>
         </div>
-        <div class="ExamplesOfWork__VideoBlock">
-            <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 35 (1).png" alt=""></div>
-            <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик “Название”</div>
+
+
+   <!-- Модальное окно для видео -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <button class="close-btn" id="closeModal">×</button>
+        
+        <!-- Перенесите заголовок под видео -->
+        <div class="video-container">
+            <iframe id="modalVideo" src="" 
+                    title="Видео ролик" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
         </div>
-        <div class="ExamplesOfWork__VideoBlock">
-            <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 37 (1).png" alt=""></div>
-            <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик “Bork”</div>
-        </div>
-        <div class="ExamplesOfWork__VideoBlock">
-            <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 41.png" alt=""></div>
-            <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик “Название”</div>
-        </div>
-        <div class="ExamplesOfWork__VideoBlock">
-            <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 42.png" alt=""></div>
-            <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик “Fanquip”</div>
-        </div>
-        <div class="ExamplesOfWork__VideoBlock">
-            <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 43.png" alt=""></div>
-            <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик “Название”</div>
+        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalVideoTitle">Заголовок видео</h2>
+            </div>
+            <div class="modal-description" id="modalDescription">
+                Описание видео появится здесь
+            </div>
         </div>
     </div>
+</div>
 
     <div class="paragraph2">
         <div class="paragraph2__title">5 шагов к качественному ролику</div>
@@ -103,42 +133,29 @@
     <div class="showreel">
         <div class="showreel__title">В результате вы получаете</div>
         <div class="showreel__text">уникальный, запоминающийся 3D-ролик для вашего продукта или бренда.</div>
-        <div class="showreel__video"></div>
+        <div class="showreel__video"><iframe style="border-radius: 32px;" width="700" height="400" src="https://www.youtube.com/embed/0w80F8FffQ4?si=aI_qLaT-FMATCspw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
     </div>
 
-    <div class="consultation">
+    <div class="consultation" id="section1">
         <div class="consultation__title">Обсудим проект?</div>
         <div class="consultation__text">Начнем с консультации - это бесплатно. Разработаем для вас 2-3 идеи будущего ролика.</div>
-         <nav class="dropdown-menu">
-        <button class="dropdown-toggle">
+         <nav class="dropdown-menu2">
+        <button class="dropdown-toggle2">
             Обсудить проект
-            <img src="images/arrow-down.svg" alt="▼" class="dropdown-arrow">
+            <img src="IMG/Caret_Down_MD.png" alt="▼" class="dropdown-arrow">
         </button>
         
         <div class="dropdown-content">
-            <a href="https://t.me/lipaaatkin" class="dropdown-item" target="_blank">
-                <img src="images/telegram-icon.png" alt="Telegram" class="menu-icon">
-                <span class="item-text">
-                    Обсудить проект<br>
-                    <span class="item-subtext">в Telegram</span>
-                </span>
+            <a href="https://t.me/lipaaatkin" class="dropdown-item2" target="_blank">
+                <img src="IMG/telegram (1).png" alt="Telegram" class="menu-icon">
+                <span class="item-text">Обсудить проект<br> в Telegram</span>
             </a>
             
-            <a href="https://wa.me/79999999999" class="dropdown-item" target="_blank">
-                <img src="images/whatsapp-icon.png" alt="WhatsApp" class="menu-icon">
-                <span class="item-text">
-                    Обсудить проект<br>
-                    <span class="item-subtext">в WhatsApp</span>
-                </span>
+            <a href="https://wa.me/79999999999" class="dropdown-item2" target="_blank">
+                <img src="IMG/whatsapp.png" alt="WhatsApp" class="menu-icon">
+                <span class="item-text">Обсудить проект<br> в WhatsApp</span>
             </a>
             
-            <a href="viber://chat?number=79999999999" class="dropdown-item" target="_blank">
-                <img src="images/viber-icon.png" alt="Viber" class="menu-icon">
-                <span class="item-text">
-                    Обсудить проект<br>
-                    <span class="item-subtext">в Viber</span>
-                </span>
-            </a>
         </div>
     </nav>
         <div class="consultation__menu"><img src="IMG/telegram.png" alt=""></div>
@@ -153,50 +170,116 @@
         <div class="workFormat__block">
             <div class="workFormat__block_container">
             <div class="workFormat__block_title">3D-моушн графика</div>
-            <div class="workFormat__block_text">Если ваш продукт должен выглядеть премиально и стильно. <br> Подойдет для рекламных кампаний, сайтов и презентаций. Усилит имидж бренда.</div>
+            <div class="workFormat__block_text">Если ваш продукт должен выглядеть премиально и стильно. <br> <br> Подойдет для рекламных кампаний, сайтов и презентаций. Усилит имидж бренда.</div>
             </div>
             <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Product Motion Showreel 2.mp4" type="video/mp4"></video></div>
         </div>
         <div class="workFormat__block">
             <div class="workFormat__block_container">
             <div class="workFormat__block_title">Объясняющее видео “эксплейнер”</div>
-            <div class="workFormat__block_text">Для компаний со сложными или технологичными продуктами. Наглядным способом объяснит, как работает продукт или компания, покажет пользу для клиента.</div>
+            <div class="workFormat__block_text">Для компаний со сложными или технологичными продуктами. <br> <br> Наглядным способом объяснит, как работает продукт или компания, покажет пользу для клиента.</div>
             </div>
             <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Explainer Showreel 2.mp4" type="video/mp4"></video></div>
         </div>
         <div class="workFormat__block">
             <div class="workFormat__block_container">
             <div class="workFormat__block_title">Видео для соцсетей</div>
-            <div class="workFormat__block_text">Короткие, вовлекающие 3D-ролики, помогут вашему бренду быть в центре внимания. Динамично покажут продукт и привлекут новую аудиторию.</div>
+            <div class="workFormat__block_text">Короткие, вовлекающие 3D-ролики, помогут вашему бренду быть в центре внимания. <br> <br> Динамично покажут продукт и привлекут новую аудиторию. <br> <br> Reels | Stories | YouTube | TikTok</div>
             </div>
-            <div class="workFormat__block_gif"><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px;"><source src="IMG/Final (Hand Brake)/1 Socialmedia Video.mp4" type="video/mp4"></video><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Znat 3.mp4" type="video/mp4"></video></div>
+            <div class="workFormat__block_gif"><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/1 SocialMedia Vide_2.mp4" type="video/mp4"></video><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/ZNAT_3.mp4" type="video/mp4"></video></div>
         </div>
     </div>
 
     <div class="costBlock">
         <div class="costBlock__title">Сколько стоит 3D ролик?</div>
         <div class="costBlock__text">Стоимость ролика зависит от задач, сложности и длительности. Не сложный ролик может начинаться по стоимости от 400$. <br> Каждый проект уникален, напишите нам для рассчета точной стоимости.</div>
-        <div class="costBlock__menu"></div>
+        <nav class="costBlock__item"><button id="openModal" class="costBlock__menu">Получить прайс-лист</button></nav>
+        
     </div>
 
-    <div class="discussion">
-        <div class="discussion__container">
-        <div class="discussion__title">Обсудим проект?</div>
-        <div class="discussion__text">Начнем с консультации - это бесплатно. Разработаем для вас 2-3 идеи будущего ролика.</div>
+
+
+    <!-- Modal для прайс-листа -->
+<div id="priceModal" class="price-modal">
+    <div class="price-modal-content">
+        <div class="price-modal-header">
+            <h2>Скачать прайс-лист на все типы графики в 1 клик</h2>
+            <button class="price-close">&times;</button>
         </div>
-        <div class="discussion__menu"><img src="IMG/telegram.png" alt=""></div>
+        <div class="price-modal-body">
+            <div class="price-modal-image">
+                <img src="IMG/Rectangle 107.png" alt="3D графика" style="width: 100%; height: auto; border-radius: 10px;">
+            </div>
+            
+            <form id="priceForm" class="price-form">
+                <div class="price-form-group">
+                    <div class="price-select-wrapper">
+                        <select id="messenger" required>
+                            <option value="" disabled selected>Выберите мессенджер</option>
+                            <option value="telegram">Telegram</option>
+                            <option value="whatsapp">WhatsApp</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="price-form-group">
+                    <div class="price-input-wrapper">
+                        <input type="text" id="phone" placeholder="Введите номер телефона или никнейм" required maxlength="50">
+                    </div>
+                </div>
+                
+                <button type="submit" class="price-submit-btn">Получить прайс-лист</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="success-modal">
+    <div class="success-content">
+        <h3>Спасибо!</h3>
+        <p>Скоро вам отправят<br>прайс-лист</p>
+    </div>
+</div>
+
+
+
+      <div class="consultation">
+        <div class="consultation__title">Обсудим проект?</div>
+        <div class="consultation__text">Начнем с консультации - это бесплатно. Разработаем для вас 2-3 идеи будущего ролика.</div>
+         <nav class="dropdown-menu2">
+        <button class="dropdown-toggle2">
+            Обсудить проект
+            <img src="IMG/Caret_Down_MD.png" alt="▼" class="dropdown-arrow">
+        </button>
+        
+        <div class="dropdown-content">
+            <a href="https://t.me/lipaaatkin" class="dropdown-item2" target="_blank">
+                <img src="IMG/telegram (1).png" alt="Telegram" class="menu-icon">
+                <span class="item-text">Обсудить проект<br> в Telegram</span>
+            </a>
+            
+            <a href="https://wa.me/79999999999" class="dropdown-item2" target="_blank">
+                <img src="IMG/whatsapp.png" alt="WhatsApp" class="menu-icon">
+                <span class="item-text">Обсудить проект<br> в WhatsApp</span>
+            </a>
+            
+        </div>
+    </nav>
+        <div class="consultation__menu"><img src="IMG/telegram.png" alt=""></div>
     </div>
     </main>
 
     <footer>
         <div class="footer">
-        <div class="footer__contacts">Контакты: <br>  lipatkinvlad99@gmail.com <br> Telegram - @lipaaatkin</div>
-        <div class="footer__button"></div>
+        <div class="footer__contacts">Контакты: <br>lipatkinvlad99@gmail.com <br>Telegram - @lipaaatkin</div>
+        <button class="footer__button" onclick="scrollToTop()"><img src="IMG/Caret_Down_MD.png" alt=""></button>
         <div class="footer__agreement">Политика конфиденциальности Пользовательское соглашение <br> УНП: AE8396792</div>
         </div>
     </footer>
 
-
+    
     <script src="JS/index.js"></script>
 </body>
+
 </html>
