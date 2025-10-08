@@ -1,3 +1,21 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const blocks = document.querySelectorAll('.stageOfWork__block');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.15, // Анимация запустится когда 15% элемента видно
+        rootMargin: '0px 0px -30px 0px'
+    });
+    
+    blocks.forEach(block => {
+        observer.observe(block);
+    });
+});
 
 // Функция для открытия модального окна
 function openModal(button) {
@@ -207,4 +225,5 @@ priceForm.addEventListener('submit', function(event) {
             });
         }
 
-        
+
+
