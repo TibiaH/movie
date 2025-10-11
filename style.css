@@ -11,21 +11,35 @@ header {
   min-height: 805px;
   background-image: url("./IMG/header.png");
   align-content: center;
+  margin: 0 10px 0 10px;
+}
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(6, 4, 0, 0.9) 0%, transparent 30%, transparent 85%, rgba(6, 4, 0, 0.9) 100%);
+  pointer-events: none;
 }
 
 .header__costBlock {
   text-align: right;
   margin-bottom: 100px;
+  position: absolute;
+  top: 20px;
+  right: 10%;
 }
 .header__container {
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: auto auto;
   max-width: 1200px;
   margin: 0px auto;
 }
 .header__image {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto auto;
 }
 .header__block:nth-child(2) {
   rotate: 33grad;
@@ -35,8 +49,10 @@ header {
 .header__block {
   background-color: #4E4D4B;
   opacity: 87%;
-  width: 315px;
-  height: 509px;
+  max-width: 315px;
+  max-height: 509px;
+  width: 100%;
+  height: 100%;
   border-radius: 41px;
   text-align: left;
   rotate: 8.41grad;
@@ -115,17 +131,6 @@ header {
   margin-top: 10px;
 }
 
-header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to right, rgba(6, 4, 0, 0.9) 0%, transparent 30%, transparent 85%, rgba(6, 4, 0, 0.9) 100%);
-  pointer-events: none;
-}
-
 .paragraph1 {
   padding-left: 7%;
   align-content: center;
@@ -148,7 +153,6 @@ header::after {
   color: #fff;
   max-width: 365px;
 }
-
 .paragraph1::after {
   content: "";
   position: absolute;
@@ -168,8 +172,8 @@ header::after {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+  padding: 0 10px 0 10px;
 }
-
 .ExamplesOfWork__VideoBlock {
   margin: 0px auto;
   margin-top: 2%;
@@ -183,13 +187,12 @@ header::after {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .ExamplesOfWork__VideoBlock:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
 .ExamplesOfWork__VideoBlock_video {
+  position: relative;
   margin: 0px auto;
   margin-top: 2%;
   max-width: 388px;
@@ -199,7 +202,25 @@ header::after {
   border-radius: 32px;
   overflow: hidden;
 }
-
+.ExamplesOfWork__VideoBlock_video::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
 .ExamplesOfWork__VideoBlock_video img {
   width: 100%;
   height: 100%;
@@ -207,7 +228,6 @@ header::after {
      object-fit: cover;
   border-radius: 32px;
 }
-
 .ExamplesOfWork__VideoBlock_text {
   color: #fff;
   font-size: 17px;
@@ -215,12 +235,15 @@ header::after {
   margin-top: 25px;
   font-weight: lighter;
 }
-
 .ExamplesOfWork__VideoBlock:nth-child(even) {
   background-color: #4B4A4A;
 }
 
-/* Стили для модального окна - заголовок под видео */
+.ExamplesOfWork__VideoBlock:hover .ExamplesOfWork__VideoBlock_video::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -284,18 +307,16 @@ header::after {
           backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
 .close-btn:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
   transform: rotate(90deg);
 }
 
-/* Видео контейнер теперь вверху */
 .video-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 соотношение сторон */
+  padding-bottom: 56.25%;
   margin-bottom: 0;
   border-radius: 0;
   overflow: hidden;
@@ -311,7 +332,6 @@ header::after {
   border: none;
 }
 
-/* Контент под видео */
 .modal-content {
   padding: 30px 40px;
   background: rgba(255, 255, 255, 0.03);
@@ -346,49 +366,6 @@ header::after {
   margin: 0;
 }
 
-/* Стили для блоков с видео на главной странице */
-.ExamplesOfWork__VideoBlock {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.ExamplesOfWork__VideoBlock:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.ExamplesOfWork__VideoBlock_video {
-  position: relative;
-}
-
-.ExamplesOfWork__VideoBlock_video::after {
-  content: "▶";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  font-size: 1.5rem;
-  opacity: 0;
-  transition: all 0.3s ease;
-  z-index: 2;
-}
-
-.ExamplesOfWork__VideoBlock:hover .ExamplesOfWork__VideoBlock_video::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* Адаптивность */
 .paragraph2 {
   margin: 0px auto;
   min-height: 225px;
@@ -538,10 +515,15 @@ header::after {
 .showreel__video {
   margin: 0px auto;
   margin-top: 30px;
-  background-color: #C4C4C4;
   border-radius: 32px;
-  width: 693px;
-  height: 397px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 400px;
+  aspect-ratio: 16/9;
+}
+.showreel__video iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .consultation {
@@ -600,7 +582,6 @@ header::after {
   gap: 8px;
   transition: all 0.3s ease;
 }
-
 .dropdown-toggle2:hover {
   background: #7D7A74;
 }
@@ -648,13 +629,8 @@ header::after {
   transition: background 0.2s ease;
   font-weight: 500;
 }
-
 .dropdown-item2:hover {
   background: #7D7A74;
-}
-
-.dropdown-item2:hover .item-text {
-  color: #fff;
 }
 
 .menu-icon {
@@ -666,29 +642,6 @@ header::after {
 .item-text {
   line-height: 1.4;
   font-size: 12px;
-}
-
-.item-subtext {
-  font-size: 12px;
-  color: #666;
-  font-weight: normal;
-}
-
-.dropdown-item:hover .item-subtext {
-  color: #fff;
-}
-
-/* Цвета иконок при наведении */
-.dropdown-item:hover .menu-icon[alt=Telegram] {
-  filter: brightness(0) saturate(100%) invert(33%) sepia(98%) saturate(2083%) hue-rotate(183deg) brightness(97%) contrast(101%);
-}
-
-.dropdown-item:hover .menu-icon[alt=WhatsApp] {
-  filter: brightness(0) saturate(100%) invert(47%) sepia(98%) saturate(391%) hue-rotate(87deg) brightness(93%) contrast(89%);
-}
-
-.dropdown-item:hover .menu-icon[alt=Viber] {
-  filter: brightness(0) saturate(100%) invert(26%) sepia(89%) saturate(7483%) hue-rotate(293deg) brightness(89%) contrast(101%);
 }
 
 .paragraph3 {
@@ -803,7 +756,6 @@ header::after {
   align-content: center;
 }
 
-/* Modal Styles */
 .price-modal {
   display: none;
   position: fixed;
@@ -850,7 +802,7 @@ header::after {
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: inline-block; /* Добавьте это */
+  display: inline-block;
 }
 
 .price-modal-body {
@@ -901,8 +853,7 @@ label {
           appearance: none;
   cursor: pointer;
 }
-
-.price-select-wrapper::after {
+.price-select-wrapper select::after {
   content: "▼";
   font-size: 12px;
   position: absolute;
@@ -957,7 +908,6 @@ label {
   transition: background 0.3s ease;
   margin-top: 10px;
 }
-
 .price-submit-btn:hover {
   background: #EEC481;
   color: #000;
@@ -972,7 +922,6 @@ label {
   color: white;
 }
 
-/* Success Modal Styles */
 .success-modal {
   display: none;
   position: fixed;
@@ -1008,7 +957,7 @@ label {
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: inline-block; /* Добавьте это */
+  display: inline-block;
 }
 
 .success-content p {
@@ -1021,42 +970,9 @@ label {
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: inline-block; /* Добавьте это */
+  display: inline-block;
 }
 
-@media (max-width: 600px) {
-  .container {
-    margin: 10px;
-  }
-  header {
-    padding: 20px 15px;
-  }
-  h1 {
-    font-size: 24px;
-  }
-  .content {
-    padding: 20px 15px;
-  }
-  .modal-body {
-    padding: 0 20px 30px;
-  }
-  .modal-header {
-    padding: 25px 15px 25px;
-  }
-  .modal-image {
-    margin: 0 auto 30px;
-    height: 120px;
-  }
-  .success-content {
-    padding: 40px 20px;
-  }
-  .success-content h3 {
-    font-size: 24px;
-  }
-  .success-content p {
-    font-size: 18px;
-  }
-}
 .discussion {
   margin: 0px auto;
   min-height: 295px;
@@ -1100,18 +1016,22 @@ footer {
   margin: 0px auto;
   max-width: 995px;
   display: grid;
+  grid-template-areas: "tx1 bt tx2";
   grid-template-columns: 35% 30% 35%;
   color: #fff;
   font-weight: lighter;
 }
 .footer__contacts {
+  grid-area: tx1;
   font-size: 17px;
   margin: 20px 0 20px 10px;
 }
 .footer__agreement {
+  grid-area: tx2;
   margin: 20px 0 20px 0px;
 }
 .footer__button {
+  grid-area: bt;
   margin: 0px auto;
   margin-top: 20px;
   background-color: #363431;
@@ -1122,43 +1042,9 @@ footer {
   border-radius: 16px;
 }
 
-@media (max-width: 768px) {
-  .modal {
-    width: 95%;
-    border-radius: 16px;
-  }
-  .modal-content {
-    padding: 20px;
-  }
-  .modal-title {
-    font-size: 1.6rem;
-  }
-  .modal-description {
-    font-size: 1rem;
-  }
-  .close-btn {
-    top: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    font-size: 1.5rem;
-  }
-}
-@media (max-width: 480px) {
-  .modal-overlay {
-    padding: 10px;
-  }
-  .modal-title {
-    font-size: 1.4rem;
-  }
-  .modal-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-}
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
   .header__container {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
   }
   .header__title {
     margin: 0;
@@ -1201,21 +1087,234 @@ footer {
   .ExamplesOfWork__VideoBlock:nth-child(odd) {
     display: none;
   }
-  .stageOfWork__block {
-    margin: 0 20px 0 20px;
-  }
   .workFormat__block {
     grid-template-columns: 1fr;
-    grid-template-rows: 30% 70%;
+    grid-template-rows: auto auto;
   }
   .workFormat__block_container {
-    border: 2px solid #fff;
+    margin: 0 20px 0 20px;
   }
   .workFormat__block_gif {
     text-align: left;
-    margin-top: 60px;
+    margin: 20px 20px 0 20px;
+  }
+}
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    border-radius: 16px;
+  }
+  .modal-content {
+    padding: 20px;
+  }
+  .modal-title {
+    font-size: 1.6rem;
+  }
+  .modal-description {
+    font-size: 1rem;
+  }
+  .close-btn {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+  }
+  header {
+    padding: 20px 15px;
+  }
+  .header__title {
+    font-size: 48px;
+  }
+  .header__costBlock {
+    margin-top: 20px;
+    right: 16%;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .content {
+    padding: 20px 15px;
+  }
+  .modal-body {
+    padding: 0 20px 30px;
+  }
+  .modal-header {
+    padding: 25px 15px 25px;
+  }
+  .modal-image {
+    margin: 0 auto 30px;
+    height: 120px;
+  }
+  .success-content {
+    padding: 40px 20px;
+  }
+  .success-content h3 {
+    font-size: 24px;
+  }
+  .success-content p {
+    font-size: 18px;
+  }
+  .paragraph1 {
+    background: none;
+    text-align: center;
+    min-height: 150px;
+    padding: 0;
+  }
+  .paragraph1__title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .paragraph1__text {
+    text-align: center;
+    margin: 0px auto;
+    font-size: 14px;
+  }
+  .paragraph2 {
+    background: none;
+    min-height: 150px;
+  }
+  .paragraph2__title {
+    font-size: 28px;
+  }
+  .paragraph2__text {
+    font-size: 14px;
+  }
+  .stageOfWork {
+    min-height: 1000px;
+  }
+  .stageOfWork__block {
+    max-height: 160px;
+    grid-template-columns: auto auto;
+  }
+  .stageOfWork__block_title {
+    font-size: 20px;
+  }
+  .stageOfWork__block_text {
+    font-size: 14px;
+  }
+  .stageOfWork__block_video {
+    display: none;
+  }
+  .ExamplesOfWork {
+    min-height: 600px;
+  }
+  .ExamplesOfWork__VideoBlock {
+    max-width: 345px;
+    max-height: 235px;
+    width: 100%;
+    height: 100%;
+  }
+  .ExamplesOfWork__VideoBlock_video {
+    max-width: 328px;
+    max-height: 180px;
+  }
+  .ExamplesOfWork__VideoBlock_text {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  .showreel {
+    min-height: 330px;
+    padding: 20px;
+  }
+  .showreel__title {
+    font-size: 20px;
+  }
+  .showreel__text {
+    font-size: 14px;
+  }
+  .consultation {
+    background: none;
+    margin-top: 40px;
+    text-align: center;
+    grid-template-columns: auto;
+    grid-template-areas: "tl" "tx" "dr";
+    min-height: 200px;
+  }
+  .consultation__menu {
+    display: none;
+  }
+  .consultation__title {
+    margin-top: 0;
+    font-size: 28px;
+  }
+  .consultation__text {
+    margin: 0px auto;
+    font-size: 14px;
+  }
+  .dropdown-menu2 {
+    margin: 0px auto;
+  }
+  .paragraph3 {
+    min-height: 150px;
+    padding: 10px;
+  }
+  .paragraph3__title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .paragraph3__text {
+    font-size: 14px;
+    margin: 0px auto;
+  }
+  .workFormat__block_title {
+    font-size: 20px;
   }
   .workFormat__block_text {
-    border: 2px solid #fff;
+    font-size: 14px;
+  }
+  .workFormat__block_gif {
+    max-width: 200px;
+    max-height: 100px;
+    aspect-ratio: 16/9;
+    margin-bottom: 20px;
+  }
+  .workFormat__block_gif video {
+    width: 100%;
+    height: 100%;
+  }
+  .workFormat .workFormat__block_gif:last-child {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .costBlock {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 200px;
+    background: none;
+  }
+  .costBlock__title {
+    font-size: 20px;
+  }
+  .costBlock__text {
+    margin: 0px auto;
+    font-size: 14px;
+  }
+  .costBlock__menu {
+    margin: 0;
+  }
+  .footer {
+    text-align: center;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "bt" "tx1" "tx2";
+  }
+}
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+  .modal-title {
+    font-size: 1.4rem;
+  }
+  .modal-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -12,14 +12,13 @@
     <title>Document</title>
 </head>
 <body>
-
     <header>
-        <nav class="header__costBlock" style="position: absolute; top: 20px; right: 10%;"><button id="openModal" class="costBlock__menu" style="display: flex; align-items: center;"><img src="IMG/File_Download.png" alt="">Скачать прайс лист</button></nav>
+        <nav class="header__costBlock"><button id="openModal" class="costBlock__menu" style="display: flex; align-items: center;"><img src="IMG/File_Download.png" alt="">Скачать прайс лист</button></nav>
         <div class="header__container">
         <div class="header__text">
         <div class="header__title">3D-графика</div>
         <div class="header__subtitle">
-            <div class="header__subtitle_text">Под ключ с гарантией качества</div>
+            <div class="header__subtitle_text">Под ключ с гарантией качества</div>
             <div class="header__subtitle_icon">от 3 дней</div>
         </div>
         <button class="header__button" onclick="scrollToTarget()">Обсудить проект</button>
@@ -38,14 +37,12 @@
         </div>
         </div>
     </header>
-
     <main>
-    <div class="paragraph1">
+        <div class="paragraph1">
         <div class="paragraph1__title">Примеры работ</div>
         <div class="paragraph1__text">Каждый ролик стал эффективным инструментом для бизнеса.</div>
-    </div>
-
-    <div class="ExamplesOfWork">
+        </div>
+        <div class="ExamplesOfWork">
             <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “Yangen”"'  data-video-url="https://youtu.be/ib_72fXT1X4?si=bicOcEGHd2WgD2Tc" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 33 (1).png" alt="Yangen ролик"></div>
                 <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик "Yangen"</div>
@@ -71,14 +68,9 @@
                 <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик "Название"</div>
             </div>
         </div>
-
-
-   <!-- Модальное окно для видео -->
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
+        <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
         <button class="close-btn" id="closeModal">×</button>
-        
-        <!-- Перенесите заголовок под видео -->
         <div class="video-container">
             <iframe id="modalVideo" src="" 
                     title="Видео ролик" 
@@ -86,7 +78,6 @@
                     allowfullscreen>
             </iframe>
         </div>
-        
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="modalVideoTitle">Заголовок видео</h2>
@@ -95,15 +86,13 @@
                 Описание видео появится здесь
             </div>
         </div>
-    </div>
-</div>
-
-    <div class="paragraph2">
+        </div>
+        </div>
+        <div class="paragraph2">
         <div class="paragraph2__title">5 шагов к качественному ролику</div>
         <div class="paragraph2__text">Мы пройдем с вашим проектом через 5 этапов, и получим эффективный результат</div>
-    </div>
-
-    <div class="stageOfWork">
+        </div>
+        <div class="stageOfWork">
         <div class="stageOfWork__block">
             <div class="stageOfWork__block_title"><span>1.</span> Брифинг и анализ</div>
             <div class="stageOfWork__block_text">Погружаемся в продукт, аудиторию и ваши задачи. <br> <br> Изучаем конкурентов и вашу нишу, что бы сделать ролик который выделяется и продает.</div>
@@ -129,45 +118,35 @@
             <div class="stageOfWork__block_text">Цветокоррекция, добавление 2D эффектов и финальный рендеринг. <br> <br> Звуковое сопровождение от профессионального саунд-дизайнера.</div>
             <div class="stageOfWork__block_video"><img src="IMG/Rectangle 54.png" alt=""></div>
         </div>
-    </div>
-
-    <div class="showreel">
+        </div>
+        <div class="showreel">
         <div class="showreel__title">В результате вы получаете</div>
         <div class="showreel__text">уникальный, запоминающийся 3D-ролик для вашего продукта или бренда.</div>
-        <div class="showreel__video"><iframe style="border-radius: 32px;" width="700" height="400" src="https://www.youtube.com/embed/0w80F8FffQ4?si=aI_qLaT-FMATCspw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-    </div>
-
-    <div class="consultation" id="section1">
+        <div class="showreel__video"><iframe style="border-radius: 32px;" src="https://www.youtube.com/embed/0w80F8FffQ4?si=aI_qLaT-FMATCspw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        </div>
+        <div class="consultation" id="section1">
         <div class="consultation__title">Обсудим проект?</div>
         <div class="consultation__text">Начнем с консультации - это бесплатно. Разработаем для вас 2-3 идеи будущего ролика.</div>
-         <nav class="dropdown-menu2">
-        <button class="dropdown-toggle2">
-            Обсудить проект
-            <img src="IMG/Caret_Down_MD.png" alt="▼" class="dropdown-arrow">
-        </button>
-        
+        <nav class="dropdown-menu2">
+        <button class="dropdown-toggle2">Обсудить проект<img src="IMG/Caret_Down_MD.png" alt="▼" class="dropdown-arrow"></button>
         <div class="dropdown-content">
             <a href="https://t.me/lipaaatkin" class="dropdown-item2" target="_blank">
                 <img src="IMG/telegram (1).png" alt="Telegram" class="menu-icon">
                 <span class="item-text">Обсудить проект<br> в Telegram</span>
             </a>
-            
             <a href="https://wa.me/79999999999" class="dropdown-item2" target="_blank">
                 <img src="IMG/whatsapp.png" alt="WhatsApp" class="menu-icon">
                 <span class="item-text">Обсудить проект<br> в WhatsApp</span>
             </a>
-            
         </div>
     </nav>
         <div class="consultation__menu"><img src="IMG/telegram.png" alt=""></div>
-    </div>
-
-    <div class="paragraph3">
+        </div>
+        <div class="paragraph3">
         <div class="paragraph3__title">Мы делаем ролики под разные задачи</div>
         <div class="paragraph3__text">Давайте определим, какой формат вам подходит:</div>
-    </div>
-
-    <div class="workFormat">
+        </div>
+        <div class="workFormat">
         <div class="workFormat__block">
             <div class="workFormat__block_container">
             <div class="workFormat__block_title">3D-моушн графика</div>
@@ -187,22 +166,16 @@
             <div class="workFormat__block_title">Видео для соцсетей</div>
             <div class="workFormat__block_text">Короткие, вовлекающие 3D-ролики, помогут вашему бренду быть в центре внимания. <br> <br> Динамично покажут продукт и привлекут новую аудиторию. <br> <br> Reels | Stories | YouTube | TikTok</div>
             </div>
-            <div class="workFormat__block_gif"><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/1 SocialMedia Vide_2.mp4" type="video/mp4"></video><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/ZNAT_3.mp4" type="video/mp4"></video></div>
+            <div class="workFormat__block_gif"><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/1 SocialMedia Vide_2.mp4" type="video/mp4"></video><video width="250px" height="304px" autoplay muted loop playsinline style="border-radius: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/ZNAT_3.mp4" type="video/mp4"></video></div>
         </div>
-    </div>
-
-    <div class="costBlock">
+        </div>
+        <div class="costBlock">
         <div class="costBlock__title">Сколько стоит 3D ролик?</div>
         <div class="costBlock__text">Стоимость ролика зависит от задач, сложности и длительности. Не сложный ролик может начинаться по стоимости от 400$. <br> Каждый проект уникален, напишите нам для рассчета точной стоимости.</div>
         <nav class="costBlock__item"><button id="openModal" class="costBlock__menu">Получить прайс-лист</button></nav>
-        
-    </div>
-
-
-
-    <!-- Modal для прайс-листа -->
-<div id="priceModal" class="price-modal">
-    <div class="price-modal-content">
+        </div>
+        <div id="priceModal" class="price-modal">
+        <div class="price-modal-content">
         <div class="price-modal-header">
             <h2>Скачать прайс-лист на все типы графики в 1 клик</h2>
             <button class="price-close">&times;</button>
@@ -211,7 +184,7 @@
             <div class="price-modal-image">
                 <img src="IMG/Rectangle 107.png" alt="3D графика" style="width: 100%; height: auto; border-radius: 10px;">
             </div>
-            
+
             <form id="priceForm" class="price-form">
                 <div class="price-form-group">
                     <div class="price-select-wrapper">
@@ -233,19 +206,14 @@
             </form>
         </div>
     </div>
-</div>
-
-<!-- Success Modal -->
-<div id="successModal" class="success-modal">
-    <div class="success-content">
+        </div>
+        <div id="successModal" class="success-modal">
+        <div class="success-content">
         <h3>Спасибо!</h3>
         <p>Скоро вам отправят<br>прайс-лист</p>
-    </div>
-</div>
-
-
-
-      <div class="consultation">
+        </div>
+        </div>
+        <div class="consultation">
         <div class="consultation__title">Обсудим проект?</div>
         <div class="consultation__text">Начнем с консультации - это бесплатно. Разработаем для вас 2-3 идеи будущего ролика.</div>
          <nav class="dropdown-menu2">
@@ -268,7 +236,7 @@
         </div>
     </nav>
         <div class="consultation__menu"><img src="IMG/telegram.png" alt=""></div>
-    </div>
+        </div>
     </main>
 
     <footer>
@@ -278,8 +246,6 @@
         <div class="footer__agreement">Политика конфиденциальности Пользовательское соглашение <br> УНП: AE8396792</div>
         </div>
     </footer>
-
-    
     <script src="JS/index.js"></script>
 </body>
 
