@@ -18,11 +18,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Функция для открытия модального окна
-function openModal(button) {
-    const videoBlock = button.closest('.ExamplesOfWork__VideoBlock');
-    const videoTitle = videoBlock.getAttribute('data-video-title');
-    const videoUrl = videoBlock.getAttribute('data-video-url');
-    const videoDescription = videoBlock.getAttribute('data-video-description');
+function openModal(buttonOrBlock) {
+    let videoBlock, videoTitle, videoUrl, videoDescription;
+    
+    // Если передан блок header__block напрямую
+    if (buttonOrBlock.classList.contains('header__block')) {
+        videoBlock = buttonOrBlock;
+    } 
+    // Если передан блок ExamplesOfWork__VideoBlock напрямую
+    else if (buttonOrBlock.classList.contains('ExamplesOfWork__VideoBlock')) {
+        videoBlock = buttonOrBlock;
+    }
+    // Если передана кнопка (старая логика)
+    else {
+        if (buttonOrBlock.closest('.ExamplesOfWork__VideoBlock')) {
+            videoBlock = buttonOrBlock.closest('.ExamplesOfWork__VideoBlock');
+        } else if (buttonOrBlock.closest('.header__block')) {
+            videoBlock = buttonOrBlock.closest('.header__block');
+        } else {
+            console.error('Блок не найден');
+            return;
+        }
+    }
+    
+    // Получаем данные из атрибутов
+    videoTitle = videoBlock.getAttribute('data-video-title');
+    videoUrl = videoBlock.getAttribute('data-video-url');
+    videoDescription = videoBlock.getAttribute('data-video-description');
     
     const modalOverlay = document.getElementById('modalOverlay');
     const modalTitle = document.getElementById('modalVideoTitle');
@@ -71,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Добавляем кнопки воспроизведения на все видео блоки
+    // Добавляем кнопки воспроизведения на все видео блоки ExamplesOfWork__VideoBlock
     const videoBlocks = document.querySelectorAll('.ExamplesOfWork__VideoBlock');
     videoBlocks.forEach(block => {
         const playButton = document.createElement('button');
@@ -89,6 +111,16 @@ document.addEventListener('DOMContentLoaded', function() {
         block.style.cursor = 'pointer';
         block.addEventListener('click', function() {
             openModal(playButton);
+        });
+    });
+    
+    // Добавляем функциональность для header__block (без кнопок, только клик по блоку)
+    const headerBlocks = document.querySelectorAll('.header__block');
+    headerBlocks.forEach(block => {
+        // Делаем кликабельным весь блок
+        block.style.cursor = 'pointer';
+        block.addEventListener('click', function() {
+            openModal(this); // Передаем сам блок
         });
     });
 });
@@ -154,14 +186,22 @@ function scrollToTop() {
 // Получаем элементы DOM для прайс-листа
 const priceModal = document.getElementById('priceModal');
 const successModal = document.getElementById('successModal');
-const openBtn = document.getElementById('openModal');
 const priceCloseBtn = document.querySelector('.price-close');
 const priceForm = document.getElementById('priceForm');
 
-// Открытие модального окна прайс-листа
-openBtn.addEventListener('click', function() {
-    priceModal.style.display = 'flex';
-    priceForm.reset();
+// Конфигурация бота (ЗАМЕНИТЕ НА СВОИ ДАННЫЕ)
+const BOT_TOKEN = '8310260346:AAGUoK62ehPDc-r5BmqaHs4SuM9ZifWpEoM';
+const CHAT_ID = '952089103';
+
+// Получаем все кнопки для открытия модального окна
+const openBtns = document.querySelectorAll('.costBlock__menu'); // Добавьте этот класс к обеим кнопкам
+
+// Открытие модального окна прайс-листа для всех кнопок
+openBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        priceModal.style.display = 'flex';
+        priceForm.reset();
+    });
 });
 
 // Закрытие модального окна прайс-листа
@@ -181,39 +221,70 @@ window.addEventListener('click', function(event) {
     }
 });
 
+// Функция отправки в Telegram
+async function sendToTelegram(messenger, phone) {
+    const message = `📋 Новая заявка на прайс-лист:\n📱 Мессенджер: ${messenger}\n📞 Контакт: ${phone}\n⏰ Время: ${new Date().toLocaleString()}`;
+    
+    try {
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
+        
+        const data = await response.json();
+        console.log('Telegram response:', data);
+        return data.ok;
+    } catch (error) {
+        console.error('Error sending to Telegram:', error);
+        return false;
+    }
+}
+
 // Обработка отправки формы прайс-листа
-priceForm.addEventListener('submit', function(event) {
+priceForm.addEventListener('submit', async function(event) {
     event.preventDefault();
     
     const messenger = document.getElementById('messenger').value;
     const phone = document.getElementById('phone').value;
     
-    // Закрываем основное модальное окно
-    priceModal.style.display = 'none';
+    // Показываем загрузку
+    const submitBtn = priceForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Отправка...';
+    submitBtn.disabled = true;
     
-    // Показываем окно успеха
-    successModal.style.display = 'flex';
-    
-    // Здесь должен быть код для отправки данных в Telegram
-    // const botToken = 'YOUR_BOT_TOKEN';
-    // const chatId = 'YOUR_CHAT_ID';
-    // const message = `Новая заявка на прайс-лист:\nМессенджер: ${messenger}\nКонтакт: ${phone}`;
-    // 
-    // fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //         chat_id: chatId,
-    //         text: message
-    //     })
-    // });
+    try {
+        // Отправляем в Telegram
+        const success = await sendToTelegram(messenger, phone);
+        
+        // Закрываем основное модальное окно
+        priceModal.style.display = 'none';
+        
+        // Показываем окно успеха
+        successModal.style.display = 'flex';
+        
+        // Сбрасываем форму
+        priceForm.reset();
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Ошибка отправки. Попробуйте еще раз.');
+    } finally {
+        // Восстанавливаем кнопку
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
     
     // Через 3 секунды закрываем окно успеха
     setTimeout(function() {
         successModal.style.display = 'none';
-        priceForm.reset();
     }, 3000);
 });
 

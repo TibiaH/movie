@@ -9,11 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,218;1,218&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="icon" href="IMG/title.png" type="image/png">
+    <title>Voxel lab — 3D графика</title>
 </head>
 <body>
     <header>
-        <nav class="header__costBlock"><button id="openModal" class="costBlock__menu" style="display: flex; align-items: center;"><img src="IMG/File_Download.png" alt="">Скачать прайс лист</button></nav>
+        <nav class="header__costBlock"><button id="openModal1" class="costBlock__menu" style="display: flex; align-items: center;"><img src="IMG/File_Download.png" alt="">Скачать прайс лист</button></nav>
         <div class="header__container">
         <div class="header__text">
         <div class="header__title">3D-графика</div>
@@ -23,18 +24,28 @@
         </div>
         <button class="header__button" onclick="scrollToTarget()">Обсудить проект</button>
         </div>
-        <div class="header__image">
-            <div class="header__block">
-                <div class="header__block_image"><img src="IMG/Rectangle 29.png" alt=""></div>
-                <div class="header__block_title">Рекламный ролик</div>
-                <div class="header__block_text">Проект Yangen</div>
-            </div>
-            <div class="header__block">
-                <div class="header__block_image"><img src="IMG/Rectangle 29.png" alt=""></div>
-                <div class="header__block_title">Рекламный ролик</div>
-                <div class="header__block_text">Проект Yangen</div>
-            </div>
+      <div class="header__image">
+    <div class="header__block" 
+         data-video-title='Продуктовый ролик "Yangen"' 
+         data-video-url="https://www.youtube.com/embed/2cxq_PrZcdQ?si=0U65nKukGGEJTWjs" 
+         data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
+        <div class="header__block_image">
+            <img src="IMG/Rectangle 29.png" alt="">
         </div>
+        <div class="header__block_title">Рекламный ролик</div>
+        <div class="header__block_text">Проект Yangen</div>
+    </div>
+    <div class="header__block" 
+         data-video-title='Имиджевый ролик "ZNAT"' 
+         data-video-url="https://www.youtube.com/embed/arFTDolg8X4?si=f-PbK1T6GG_9zDl4" 
+         data-video-description="Ролик для бренда акссесуаров из натуральной кожи ZNAT. Использовался в соц.сетях бренда">
+        <div class="header__block_image">
+            <img src="IMG/Rectangle31.png" alt="">
+        </div>
+        <div class="header__block_title">Видео в соц. сети</div>
+        <div class="header__block_text">Проект ZNAT</div>
+    </div>
+</div>
         </div>
     </header>
     <main>
@@ -43,29 +54,29 @@
         <div class="paragraph1__text">Каждый ролик стал эффективным инструментом для бизнеса.</div>
         </div>
         <div class="ExamplesOfWork">
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “Yangen”"'  data-video-url="https://youtu.be/ib_72fXT1X4?si=bicOcEGHd2WgD2Tc" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “Yangen”"'  data-video-url="https://www.youtube.com/embed/2cxq_PrZcdQ?si=0U65nKukGGEJTWjs" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 33 (1).png" alt="Yangen ролик"></div>
                 <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик "Yangen"</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик "Название"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_2" data-video-description="Описание для эксплейнер ролика.">
-                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 35 (1).png" alt="Эксплейнер ролик"></div>
-                <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик "Название"</div>
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик “Aevit”"' data-video-url="https://www.youtube.com/embed/bO01NbcMEyc?si=k4mapYTvX9gRlcrv" data-video-description="Обьясняющий эксплейнер ролик для наномасла Aevit. Использовался в TV рекламе.">
+                <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 35 (1).png" alt="Эксплейнер ролик “Aevit”"></div>
+                <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик “Aevit”</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик "Bork"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_3" data-video-description="Описание для продуктового ролика Bork.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Имиджевый ролик “Antonio Maretti”' data-video-url="https://www.youtube.com/embed/3_nfuTF99_I?si=l7IXVrfhcP1ajxvf" data-video-description="Ролик для итальянского бренда парфюмерии и косметики. Использовался при открытии магазина  в Дубае">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 37 (1).png" alt="Bork ролик"></div>
-                <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик "Bork"</div>
+                <div class="ExamplesOfWork__VideoBlock_text">Имиджевый ролик “Antonio Maretti”</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик "Название"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_4" data-video-description="Описание для эксплейнер ролика.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик “Fanquip”' data-video-url="https://www.youtube.com/embed/p5xLPpuo2W8?si=JPiTOFExx7ePMUvO" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 41.png" alt="Эксплейнер ролик"></div>
-                <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик "Название"</div>
+                <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик “Fanquip”</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик "Fanquip"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_5" data-video-description="Описание для рекламного ролика Fanquip.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Имиджевый ролик “ZNAT”' data-video-url="https://www.youtube.com/embed/arFTDolg8X4?si=f-PbK1T6GG_9zDl4" data-video-description="Ролик для бренда акссесуаров из натуральной кожи ZNAT. Использовался в соц.сетях бренда">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 42.png" alt="Fanquip ролик"></div>
-                <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик "Fanquip"</div>
+                <div class="ExamplesOfWork__VideoBlock_text">Имиджевый ролик “ZNAT”"</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик "Название"' data-video-url="https://www.youtube.com/embed/VIDEO_ID_6" data-video-description="Описание для рекламного ролика.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “SureBrash”' data-video-url="https://www.youtube.com/embed/VIDEO_ID_6" data-video-description="Моушн ролик для бренда SureBrash и его флагманской зубной щетки - SureBrush Pro.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 43.png" alt="Рекламный ролик"></div>
-                <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик "Название"</div>
+                <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик “SureBrash”</div>
             </div>
         </div>
         <div class="modal-overlay" id="modalOverlay">
@@ -122,7 +133,7 @@
         <div class="showreel">
         <div class="showreel__title">В результате вы получаете</div>
         <div class="showreel__text">уникальный, запоминающийся 3D-ролик для вашего продукта или бренда.</div>
-        <div class="showreel__video"><iframe style="border-radius: 32px;" src="https://www.youtube.com/embed/0w80F8FffQ4?si=aI_qLaT-FMATCspw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <div class="showreel__video"><iframe style="border-radius: 32px;" src="https://www.youtube.com/embed/-5FOfgMv0lU?si=2SuSmV-g6tgaXn2f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         </div>
         <div class="consultation" id="section1">
         <div class="consultation__title">Обсудим проект?</div>
@@ -134,13 +145,13 @@
                 <img src="IMG/telegram (1).png" alt="Telegram" class="menu-icon">
                 <span class="item-text">Обсудить проект<br> в Telegram</span>
             </a>
-            <a href="https://wa.me/79999999999" class="dropdown-item2" target="_blank">
+            <a href="https://api.whatsapp.com/send?phone=375255341317" class="dropdown-item2" target="_blank">
                 <img src="IMG/whatsapp.png" alt="WhatsApp" class="menu-icon">
                 <span class="item-text">Обсудить проект<br> в WhatsApp</span>
             </a>
         </div>
     </nav>
-        <div class="consultation__menu"><img src="IMG/telegram.png" alt=""></div>
+        <div class="consultation__menu" style="width: 250px; height: 250px;"><img src="IMG/telegram.png" alt=""></div>
         </div>
         <div class="paragraph3">
         <div class="paragraph3__title">Мы делаем ролики под разные задачи</div>
@@ -171,13 +182,13 @@
         </div>
         <div class="costBlock">
         <div class="costBlock__title">Сколько стоит 3D ролик?</div>
-        <div class="costBlock__text">Стоимость ролика зависит от задач, сложности и длительности. Не сложный ролик может начинаться по стоимости от 400$. <br> Каждый проект уникален, напишите нам для рассчета точной стоимости.</div>
-        <nav class="costBlock__item"><button id="openModal" class="costBlock__menu">Получить прайс-лист</button></nav>
+        <div class="costBlock__text">Стоимость ролика зависит от задач, сложности и длительности. Не сложный ролик может начинаться по стоимости от 400$. <br> <br> <br>Каждый проект уникален, напишите нам для рассчета точной стоимости.</div>
+        <nav class="costBlock__item"><button id="openModal2" class="costBlock__menu">Получить прайс-лист</button></nav>
         </div>
         <div id="priceModal" class="price-modal">
         <div class="price-modal-content">
         <div class="price-modal-header">
-            <h2>Скачать прайс-лист на все типы графики в 1 клик</h2>
+            <h2 style="font-size: 24px;">Скачать прайс-лист на все типы графики в 1 клик</h2>
             <button class="price-close">&times;</button>
         </div>
         <div class="price-modal-body">
@@ -235,13 +246,13 @@
             
         </div>
     </nav>
-        <div class="consultation__menu"><img src="IMG/telegram.png" alt=""></div>
+        <div class="consultation__menu" style="width: 250px; height: 250px;"><img src="IMG/telegram.png" alt=""></div>
         </div>
     </main>
 
     <footer>
         <div class="footer">
-        <div class="footer__contacts">Контакты: <br>lipatkinvlad99@gmail.com <br>Telegram - @lipaaatkin</div>
+        <div class="footer__contacts">Контакты: <br>lipatkinvlad99@gmail.com <br><a style="color: #fff;" href="https://t.me/lipaaatkin">Telegram - @lipaaatkin</a></div>
         <button class="footer__button" onclick="scrollToTop()"><img src="IMG/Caret_Down_MD.png" alt=""></button>
         <div class="footer__agreement">Политика конфиденциальности Пользовательское соглашение <br> УНП: AE8396792</div>
         </div>

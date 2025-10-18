@@ -33,7 +33,7 @@ header {
 
     &__container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     max-width: 1200px;
     margin: 0px auto;
     }
@@ -52,15 +52,35 @@ header {
     &__block {
     background-color: #4E4D4B;
     opacity: 87%;
-    max-width: 315px;
+    width: 315px;
     max-height: 509px;
-    width: 100%;
     height: 100%;
     border-radius: 41px;
     text-align: left;
     rotate: 8.41grad;
     z-index: 2;
-        
+    animation: shake 3s infinite;
+    @keyframes shake {
+    0%, 100% {
+        transform: translateX(0) translateY(0) rotate(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-1px) translateY(-1px) rotate(-0.5deg);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(1px) translateY(1px) rotate(0.5deg);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255,255,255,0.4),
+                   0 0 30px rgba(255,255,255,0.2);
+    }
+}
     &_title {
     font-size: 28px;
     font-weight: 600;
@@ -73,7 +93,7 @@ header {
     &_text {
     font-size: 20px;
     color: #fff;
-    margin: 130px 0 20px 20px;
+    margin: 90px 0 20px 20px;
     font-family: "Montserrat", sans-serif;
     }
     }
@@ -93,16 +113,28 @@ header {
     height: 100%;
     font-weight: 600;
     font-family: 'Montserrat Alternates', sans-serif;
-    background: linear-gradient(135deg, 
-    #EEC481 0%,
-    #ffffff 100%,);
+    background: linear-gradient(
+        135deg,
+        #EEC481 25%,
+        #ffffff 50%,
+        #EEC481 75%
+    );
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    animation: waveGradient 4s linear infinite;
     }
-
+@keyframes waveGradient {
+    0% {
+        background-position: 0% 0;
+    }
+    100% {
+        background-position: 400% 0;
+    }
+}
     &__button {
     margin: 5% 0 0 7%;
     font-size: 20px;
@@ -154,7 +186,17 @@ header {
     overflow: visible;
     font-family: 'Montserrat Alternates', sans-serif;
     background: radial-gradient(circle 400px at left top,rgba(222, 206, 179, 0.13) 0%,rgba(222, 206, 179, 0) 100%), #060400;
-
+    animation: slideInText 1s ease-out 0.8s both;
+    @keyframes slideInText {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
     &__title {
     font-size: 64px;
     color: #fff;
@@ -419,6 +461,7 @@ header {
     border-radius: 28px;
     background-size: cover;
     display: grid;
+    border: 0.6px solid #8B8B8B;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
     "tl vd"
@@ -490,7 +533,7 @@ header {
     }
     
     &__block:nth-child(2) {
-    background-image: url('./IMG/Component2.png');
+    background-image: url('./IMG/Group2.png');
     }
     
     &__block:nth-child(3) {
@@ -498,7 +541,7 @@ header {
     }
     
     &__block:nth-child(4) {
-    background-image: url('./IMG/Component4.png');
+    background-image: url('./IMG/Mask2.png');
     }
     
     &__block:nth-child(5) {
@@ -566,7 +609,7 @@ header {
         color: #fff;
         grid-area: tl;
         font-family: 'Montserrat Alternates', sans-serif;
-        margin-top: 40px;
+        margin-top: 10px;
         background: linear-gradient(135deg, #EEC481 0%,#ffffff 100%,);
         -webkit-background-clip: text;
         background-clip: text;
@@ -733,15 +776,15 @@ header {
     margin-top: 80px;
     margin-bottom: 80px;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    background-image: url('./IMG/Component\ 6.png');
+    grid-template-rows: auto auto auto;
+    background-image: url('./IMG/Group1.png');
 
     &__title {
         font-size: 56px;
         color: #fff;
         font-weight: 600;
         font-family: 'Montserrat Alternates', sans-serif;
-        margin: 40px 0 0 20px;
+        margin: 10px 0 0 20px;
         background: linear-gradient(135deg, #EEC481 0%,#ffffff 100%,);
         -webkit-background-clip: text;
         background-clip: text;
@@ -753,7 +796,7 @@ header {
         font-size: 17px;
         color: #fff;
         max-width: 390px;
-        margin: 20px 0 0 20px;
+        margin: 0px 0 0 20px;
     }
 
     &__menu {
@@ -1002,6 +1045,7 @@ footer {
     width: 100%;
 }
 .footer {
+    padding-top: 60px;
     margin: 0px auto;
     max-width: 995px;
     display: grid;
@@ -1120,47 +1164,53 @@ footer {
     }
 }
  @media (max-width: 600px) {
-            .container {
+    body {
+        padding: 10px;
+    }
+    .modal-overlay {
+        margin: 10px;
+    }
+    .container {
                 margin: 10px;
             }
-            header {
-                padding: 20px 15px;
-            }
-            .header {
-                &__title {
+    header {
+        padding: 20px 15px;
+        min-height: 600px;
+    }
+    .header {
+    &__title {
                     font-size: 48px;
-                }
-                &__costBlock {
-                    margin-top: 20px;
-                    right: 16%;
-                }
-            }
-            h1 {
+    }
+    &__costBlock {
+        display: none;
+    }
+    }
+    h1 {
                 font-size: 24px;
-            }
-            .content {
+    }
+    .content {
                 padding: 20px 15px;
-            }
-            .modal-body {
+    }
+    .modal-body {
                 padding: 0 20px 30px;
-            }
-            .modal-header {
+    }
+    .modal-header {
                 padding: 25px 15px 25px;
-            }
-            .modal-image {
+    }
+    .modal-image {
                 margin: 0 auto 30px;
                 height: 120px;
-            }
-            .success-content {
+    }
+    .success-content {
                 padding: 40px 20px;
-            }
-            .success-content h3 {
+    }
+    .success-content h3 {
                 font-size: 24px;
-            } 
-            .success-content p {
+    } 
+    .success-content p {
                 font-size: 18px;
-            }
-            .paragraph1 {
+    }
+    .paragraph1 {
                 background: none;
                 text-align: center;
                 min-height: 150px;
@@ -1174,8 +1224,8 @@ footer {
                     margin: 0px auto;
                     font-size: 14px;
                 }
-            }
-            .paragraph2 {
+}
+    .paragraph2 {
                 background: none;
                 min-height: 150px;
                 &__title {
@@ -1184,8 +1234,8 @@ footer {
                 &__text {
                     font-size: 14px;
                 }
-            }
-            .stageOfWork {
+    }
+    .stageOfWork {
                 min-height: 1000px;
                 &__block {
                     max-height: 160px;
@@ -1200,8 +1250,8 @@ footer {
                         display: none;
                     }
                 }
-            }
-            .ExamplesOfWork {
+    }
+    .ExamplesOfWork {
                 min-height: 600px;
                 &__VideoBlock {
                     max-width: 345px;
@@ -1217,8 +1267,8 @@ footer {
                         font-size: 14px;
                     }
                 }
-            }
-            .showreel {
+    }
+    .showreel {
                 min-height: 330px;
                 padding: 20px;
                 &__title {
@@ -1227,91 +1277,112 @@ footer {
                 &__text {
                     font-size: 14px;
                 }
-            }
-            .consultation {
-                background: none;
-                margin-top: 40px;
-                text-align: center;
-                grid-template-columns: auto;
-                grid-template-areas: 
-                "tl"
-                "tx"
-                "dr";
-                min-height: 200px;
-                &__menu {
-                    display: none;
-                }
-                &__title {
-                    margin-top: 0;
-                    font-size: 28px;
-                }
-                &__text {
+    }
+    .consultation {
+        background: none;
+        margin-top: 40px;
+        text-align: center;
+        padding: 0;
+        grid-template-columns: auto;
+        grid-template-areas: 
+        "tl"
+        "tx"
+        "dr";
+        min-height: 200px;
+        &__menu {
+            display: none;
+        }
+        &__title {
+            margin-top: 0;
+            font-size: 28px;
+        }
+        &__text {
+            margin: 0px auto;
+            font-size: 14px;
+            max-width: 250px;
+
+        }
+    }
+    .dropdown-menu2 {
                 margin: 0px auto;
+    }
+    .paragraph3 {
+        min-height: 150px;
+        padding: 10px;
+        &__title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        &__text {
+            font-size: 14px;
+            margin: 0px auto;
+        }
+    }
+    .workFormat {
+        &__block {
+            &_title {
+                font-size: 20px;
+            }
+            &_text {
                 font-size: 14px;
-                }
             }
-            .dropdown-menu2 {
-                margin: 0px auto;
-            }
-            .paragraph3 {
-                min-height: 150px;
-                padding: 10px;
-                &__title {
-                    font-size: 20px;
-                    margin-bottom: 20px;
-                }
-                &__text {
-                    font-size: 14px;
-                    margin: 0px auto;
-                }
-            }
-            .workFormat {
-                &__block {
-                    &_title {
-                        font-size: 20px;
-                    }
-                    &_text {
-                        font-size: 14px;
-                    }
-                    &_gif {
-                        max-width: 200px;
-                        max-height: 100px;
-                        aspect-ratio: 16 / 9;
-                        margin-bottom: 20px;
-                    }
-                    &_gif video {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-                .workFormat__block_gif:last-child {
-                    display: grid;
-                    grid-template-columns: auto auto;
-                }
-            }
-            .costBlock {
-                text-align: center;
-                margin-top: 20px;
+            &_gif {
+                max-width: 200px;
+                max-height: 100px;
+                aspect-ratio: 16 / 9;
                 margin-bottom: 20px;
-                min-height: 200px;
-                background: none;
-                &__title {
-                    font-size: 20px;
                 }
-                &__text {
-                    margin: 0px auto;
-                    font-size: 14px;
+            &_gif video {
+                width: 100%;
+                height: 100%;
                 }
-                &__menu {
-                    margin: 0;
                 }
+    .workFormat__block_gif:last-child {
+        display: grid;
+        grid-template-columns: auto auto;
+        
+    }
+    .workFormat__block_gif:last-child video {
+        padding-right: 10px;
+    }
+    }
+    .costBlock {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-height: 250px;
+        background: none;
+        &__title {
+            font-size: 28px;
+            margin: 10px 0 10px 0;
+            max-width: 250px;
+            margin: 0px auto;
             }
-            .footer {
-                text-align: center;
-                grid-template-columns: auto;
-                grid-template-rows: auto auto auto;
-                grid-template-areas: "bt" "tx1" "tx2";
-            }
+        &__text {
+            padding: 10px;
+            margin: 0px auto;
+            font-size: 14px;
+        }
+        &__menu {
+            margin: 10px 0 10px 0;
+        }
+    }
+    .footer {
+        text-align: center;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: "bt" "tx1" "tx2";
+        margin-bottom: 40px;
+        &__contacts  {
+            font-size: 12px;
+            margin: 20px 0 20px 0;
+        }
+        &__agreement {
+            font-size: 12px;
+            max-width: 240px;
+            margin: 0px auto;
+        }
+    }
 }
 @media (max-width: 480px) {
     .modal-overlay {
