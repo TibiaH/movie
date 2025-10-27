@@ -17,20 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Функция для открытия модального окна
 function openModal(buttonOrBlock) {
     let videoBlock, videoTitle, videoUrl, videoDescription;
     
-    // Если передан блок header__block напрямую
+    // Определяем блок (ваш существующий код)
     if (buttonOrBlock.classList.contains('header__block')) {
         videoBlock = buttonOrBlock;
-    } 
-    // Если передан блок ExamplesOfWork__VideoBlock напрямую
-    else if (buttonOrBlock.classList.contains('ExamplesOfWork__VideoBlock')) {
+    } else if (buttonOrBlock.classList.contains('ExamplesOfWork__VideoBlock')) {
         videoBlock = buttonOrBlock;
-    }
-    // Если передана кнопка (старая логика)
-    else {
+    } else {
         if (buttonOrBlock.closest('.ExamplesOfWork__VideoBlock')) {
             videoBlock = buttonOrBlock.closest('.ExamplesOfWork__VideoBlock');
         } else if (buttonOrBlock.closest('.header__block')) {
@@ -41,19 +36,56 @@ function openModal(buttonOrBlock) {
         }
     }
     
-    // Получаем данные из атрибутов
+    // Получаем данные
     videoTitle = videoBlock.getAttribute('data-video-title');
     videoUrl = videoBlock.getAttribute('data-video-url');
     videoDescription = videoBlock.getAttribute('data-video-description');
     
     const modalOverlay = document.getElementById('modalOverlay');
     const modalTitle = document.getElementById('modalVideoTitle');
-    const videoIframe = document.getElementById('modalVideo');
+    const videoContainer = document.querySelector('.video-container');
     const modalDescription = document.querySelector('.modal-description');
     
-    // Устанавливаем контент модального окна
+    // Очищаем контейнер
+    videoContainer.innerHTML = '';
+    
+    // СОЗДАЕМ IFRAME ДЛЯ VIMEO
+    function createVimeoIframe(vimeoUrl) {
+        const iframe = document.createElement('iframe');
+        
+        // Обрабатываем URL Vimeo
+        let finalUrl = vimeoUrl;
+        
+        // Если это просто ID видео, формируем полный URL
+        if (!vimeoUrl.includes('player.vimeo.com')) {
+            finalUrl = `https://player.vimeo.com/video/${vimeoUrl}`;
+        }
+        
+        // Добавляем параметры к URL
+        const url = new URL(finalUrl);
+        url.searchParams.append('autoplay', '1');
+        url.searchParams.append('title', '0');
+        url.searchParams.append('byline', '0');
+        url.searchParams.append('portrait', '0');
+        url.searchParams.append('dnt', '1'); // Отключаем отслеживание
+        
+        iframe.src = url.toString();
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.minHeight = '400px';
+        
+        return iframe;
+    }
+    
+    // Создаем и добавляем iframe
+    const vimeoIframe = createVimeoIframe(videoUrl);
+    videoContainer.appendChild(vimeoIframe);
+    
+    // Устанавливаем контент
     modalTitle.textContent = videoTitle;
-    videoIframe.src = videoUrl;
     modalDescription.textContent = videoDescription;
     
     // Показываем модальное окно
@@ -61,39 +93,33 @@ function openModal(buttonOrBlock) {
     document.body.style.overflow = 'hidden';
 }
 
-// Функция для закрытия модального окна
+// Функция закрытия (с остановкой Vimeo видео)
 function closeModal() {
     const modalOverlay = document.getElementById('modalOverlay');
-    const videoIframe = document.getElementById('modalVideo');
+    const videoContainer = document.querySelector('.video-container');
     
-    // Скрываем модальное окно
     modalOverlay.classList.remove('active');
     document.body.style.overflow = 'auto';
     
-    // Останавливаем видео
-    videoIframe.src = '';
+    // Останавливаем Vimeo видео
+    const iframe = videoContainer.querySelector('iframe');
+    if (iframe) {
+        // Заменяем src чтобы остановить видео
+        iframe.src = '';
+    }
 }
 
-// Инициализация после загрузки DOM
+// Инициализация (ваш существующий код)
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработчик закрытия
     document.getElementById('closeModal').addEventListener('click', closeModal);
-    
-    // Закрытие при клике вне окна
     document.getElementById('modalOverlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
+        if (e.target === this) closeModal();
     });
-    
-    // Закрытие по Escape
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
+        if (e.key === 'Escape') closeModal();
     });
     
-    // Добавляем кнопки воспроизведения на все видео блоки ExamplesOfWork__VideoBlock
+    // Добавляем обработчики для видео блоков
     const videoBlocks = document.querySelectorAll('.ExamplesOfWork__VideoBlock');
     videoBlocks.forEach(block => {
         const playButton = document.createElement('button');
@@ -105,22 +131,22 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         const videoContainer = block.querySelector('.ExamplesOfWork__VideoBlock_video');
-        videoContainer.appendChild(playButton);
+        if (videoContainer) {
+            videoContainer.appendChild(playButton);
+        }
         
-        // Также делаем кликабельным весь блок
         block.style.cursor = 'pointer';
         block.addEventListener('click', function() {
             openModal(playButton);
         });
     });
     
-    // Добавляем функциональность для header__block (без кнопок, только клик по блоку)
+    // Обработчики для header блоков
     const headerBlocks = document.querySelectorAll('.header__block');
     headerBlocks.forEach(block => {
-        // Делаем кликабельным весь блок
         block.style.cursor = 'pointer';
         block.addEventListener('click', function() {
-            openModal(this); // Передаем сам блок
+            openModal(this);
         });
     });
 });

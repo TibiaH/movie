@@ -24,11 +24,9 @@ header {
 }
 .header {
     &__costBlock {
-    text-align: right;
-    margin-bottom: 100px;
-    position: absolute; 
-    top: 20px; 
-    right: 10%;
+    margin-bottom: 70px;
+    display: flex;
+    justify-content: right;
     }
 
     &__container {
@@ -59,16 +57,37 @@ header {
     text-align: left;
     rotate: 8.41grad;
     z-index: 2;
-    animation: shake 3s infinite;
-    @keyframes shake {
-    0%, 100% {
+    animation: shake 9s infinite;
+@keyframes shake {
+    0%, 10% {
         transform: translateX(0) translateY(0) rotate(0);
     }
-    10%, 30%, 50%, 70%, 90% {
+    11%, 13%, 15%, 17%, 19% {
         transform: translateX(-1px) translateY(-1px) rotate(-0.5deg);
     }
-    20%, 40%, 60%, 80% {
+    12%, 14%, 16%, 18%, 20% {
         transform: translateX(1px) translateY(1px) rotate(0.5deg);
+    }
+    21%, 43% {
+        transform: translateX(0) translateY(0) rotate(0);
+    }
+    44%, 46%, 48%, 50%, 52% {
+        transform: translateX(-1px) translateY(-1px) rotate(-0.5deg);
+    }
+    45%, 47%, 49%, 51%, 53% {
+        transform: translateX(1px) translateY(1px) rotate(0.5deg);
+    }
+    54%, 76% {
+        transform: translateX(0) translateY(0) rotate(0);
+    }
+    77%, 79%, 81%, 83%, 85% {
+        transform: translateX(-1px) translateY(-1px) rotate(-0.5deg);
+    }
+    78%, 80%, 82%, 84%, 86% {
+        transform: translateX(1px) translateY(1px) rotate(0.5deg);
+    }
+    87%, 100% {
+        transform: translateX(0) translateY(0) rotate(0);
     }
 }
 
@@ -81,24 +100,27 @@ header {
                    0 0 30px rgba(255,255,255,0.2);
     }
 }
+&_image {
+    text-align: center;
+    margin-top: 5px;
+}
     &_title {
     font-size: 28px;
     font-weight: 600;
     font-family: 'Montserrat Alternates', sans-serif;
     color: #fff;
     max-width: 177px;
-    margin: 0 0 0 20px;
+    margin: 10px 0 0 20px;
     }
-
     &_text {
     font-size: 20px;
     color: #fff;
-    margin: 90px 0 20px 20px;
+    margin: 80px 0 20px 20px;
     font-family: "Montserrat", sans-serif;
     }
     }
-
     &__text {
+        max-height: 300px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     }
@@ -185,7 +207,7 @@ header {
     position: relative;
     overflow: visible;
     font-family: 'Montserrat Alternates', sans-serif;
-    background: radial-gradient(circle 400px at left top,rgba(222, 206, 179, 0.13) 0%,rgba(222, 206, 179, 0) 100%), #060400;
+    background: radial-gradient(circle 200px at left top,rgba(222, 206, 179, 0.13) 0%,rgba(222, 206, 179, 0) 100%), #060400;
     animation: slideInText 1s ease-out 0.8s both;
     @keyframes slideInText {
     from {
@@ -204,22 +226,25 @@ header {
     }
 
     &__text {
+    font-weight: lighter;
     margin-top: 2%;
     font-size: 17px;
     color: #fff;
     max-width: 365px;
+    max-width: 400px;
+    font-family: "Unbounded", sans-serif;
     }
 
-    &::after {
+  &::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 0; /* Смещение вверх на 20px */
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(to right,rgba(6, 4, 0, 0.9) 0%,transparent 15%,transparent 85%,rgba(6, 4, 0, 0.9) 100%);
+    height: calc(100%); /* Увеличиваем высоту на 20px */
+    background: linear-gradient(to right, rgba(6, 4, 0, 0.9) 0%, transparent 15%, transparent 85%, rgba(6, 4, 0, 0.9) 100%);
     pointer-events: none;
-    }
+} 
 }
 
 
@@ -240,7 +265,7 @@ header {
     max-height: 476px;
     width: 100%;
     height: 100%;
-    border: 0.6px solid #8B8B8B;
+    border: 0.6px solid rgba(139, 139, 139, 0.5);
     border-radius: 41px;
     background-color: #222120;
     cursor: pointer;
@@ -398,7 +423,7 @@ header {
     font-weight: 600;
     margin-bottom: 0;
     line-height: 1.2;
-    font-family: 'Unbounded', sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     background: linear-gradient(135deg,#EEC481 0%,#ffffff 100%,);
     -webkit-background-clip: text;
     background-clip: text;
@@ -423,7 +448,7 @@ header {
     text-align: center;
 
     &__title {
-    padding-top: 30px;
+    padding-top: 60px;
     font-size: 56px;
     font-family: 'Montserrat Alternates', sans-serif;
     font-weight: 600;
@@ -438,7 +463,7 @@ header {
     }
 
     &__text {
-    padding-bottom: 30px;
+    padding-bottom: 60px;
     font-size: 17px;
     font-weight: lighter;
     color: #fff;
@@ -461,7 +486,7 @@ header {
     border-radius: 28px;
     background-size: cover;
     display: grid;
-    border: 0.6px solid #8B8B8B;
+    border: 0.6px solid rgba(139, 139, 139, 0.5);
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
     "tl vd"
@@ -551,7 +576,7 @@ header {
 .showreel {
     border-radius: 28px;
     margin: 0px auto;
-    min-height: 610px;
+    min-height: 590px;
     max-width: 995px;
     width: 100%;
     background-color: #22221F;
@@ -598,6 +623,7 @@ header {
     margin-top: 80px;
     padding: 20px 0 0 20px;
     display: grid;
+    grid-template-rows: 35% 35% 30%;
     grid-template-areas: 
      "tl mn"
      "tx mn"
@@ -718,7 +744,7 @@ header {
     font-size: 64px;
     color: #fff; 
     max-width: 674px;   
-    line-height: 1;
+    line-height: 1.1;
     background: linear-gradient(135deg, #EEC481 0%,#ffffff 100%,);
     -webkit-background-clip: text;
     background-clip: text;
@@ -733,6 +759,8 @@ header {
     color: #fff;
     margin-top: 20px;
     max-width: 302px;
+    font-weight: lighter;
+    font-family: "Unbounded", sans-serif;
     }
 }
 .workFormat {
@@ -764,6 +792,7 @@ header {
         &_gif {
         text-align: right;
         }
+        
     }
 }
 .costBlock {
@@ -793,29 +822,70 @@ header {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     &__text {
+        font-weight: lighter;
         font-size: 17px;
         color: #fff;
         max-width: 390px;
         margin: 0px 0 0 20px;
     }
 
-    &__menu {
-            background: #363431;
-            color: white;
-            padding: 15px;
-            margin-left: 20px;
-            align-content: center;
-            border-radius: 18px;
-            font-size: 17px;
-            font-weight: lighter;
-            cursor: pointer;
+ &__menu {
+    background: #363431;
+    color: white;
+    padding: 15px;
+    margin-left: 20px;
+    align-content: center;
+    border-radius: 18px;
+    font-size: 17px;
+    font-weight: lighter;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.6s ease;
+        border-radius: 18px;
     }
+    
+    &:hover::before {
+        left: 100%;
+    }
+    
+    &:hover {
+        background: #464441;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+}
   
     &__item {
         position: relative;
         display: inline-block;
         align-content: center;
     }
+}
+#messenger {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('IMG/Caret_Down_MD.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 35px;
 }
 .price-modal {
     display: none;
@@ -861,7 +931,7 @@ header {
 } 
 .price-modal-image {
     width: 100%;
-    max-width: 300px;
+    max-width: 360px;
     margin: 0 auto 50px;
     display: block;
     border-radius: 10px;
@@ -873,6 +943,7 @@ header {
 }   
 .price-form-group {
     margin-bottom: 20px;
+    font-family: "Montserrat", sans-serif;
 }  
 label {
     display: block;
@@ -897,14 +968,13 @@ label {
     appearance: none;
     cursor: pointer;
     &::after {
-        content: "▼";
+        content: '▼';
             font-size: 12px;
             position: absolute;
-            right: 15px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-30%);
             pointer-events: none;
-            color: #aaa;
+            color: red;
     }
 }       
 .price-input-wrapper {
@@ -1284,6 +1354,7 @@ footer {
         text-align: center;
         padding: 0;
         grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
         grid-template-areas: 
         "tl"
         "tx"
@@ -1329,7 +1400,7 @@ footer {
             &_gif {
                 max-width: 200px;
                 max-height: 100px;
-                aspect-ratio: 16 / 9;
+                aspect-ratio: 16/9;
                 margin-bottom: 20px;
                 }
             &_gif video {
@@ -1340,7 +1411,6 @@ footer {
     .workFormat__block_gif:last-child {
         display: grid;
         grid-template-columns: auto auto;
-        
     }
     .workFormat__block_gif:last-child video {
         padding-right: 10px;
@@ -1382,6 +1452,9 @@ footer {
             max-width: 240px;
             margin: 0px auto;
         }
+    }
+    #gif2{
+        grid-template-columns: 50% 50%;
     }
 }
 @media (max-width: 480px) {
