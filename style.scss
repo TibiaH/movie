@@ -428,7 +428,6 @@ body.modal-open {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-
     &__block {
         max-height: 328px;
         height: 100%;
@@ -438,11 +437,11 @@ body.modal-open {
         border: 0.6px solid rgba(139, 139, 139, 0.5);
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-            "tl vd"
-            "tx vd";
+        "tl vd"
+        "tx vd";
         opacity: 0;
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateX(0); /* Добавляем начальное значение */
+        transform: translateX(0);
 
         &:nth-child(odd) {
             transform: translateX(-60px); 
@@ -491,6 +490,8 @@ body.modal-open {
         &_video {
             grid-area: vd;
             text-align: right;
+            align-content: center;
+            padding-right: 10px;
         }
     }
     
@@ -1102,92 +1103,8 @@ footer {
         border-radius: 16px;
     }
 }
-        @media (max-width: 1100px) {
-    .video-modal__content {
-        width: 95%;
-        height: auto;
-        max-height: 90vh; /* Уменьшаем максимальную высоту */
-    }
-    
-    .video-modal__video-container {
-        height: 0;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio для адаптивности */
-        position: relative;
-    }
-    
-    .video-modal__video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .video-modal__info {
-        padding: 20px;
-        min-height: auto;
-    }
-}
 
-@media (max-width: 768px) {
-    .video-modal {
-        padding: 10px;
-    }
-    
-    .video-modal__content {
-        width: 100%;
-        max-height: 95vh;
-        border-radius: 15px;
-    }
-    
-    .video-modal__info {
-        padding: 15px;
-    }
-    
-    .video-modal__title {
-        font-size: 1.3rem;
-    }
-    
-    .video-modal__description {
-        font-size: 0.9rem;
-    }
-    
-    .video-modal__close {
-        top: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 1.7rem;
-    }
-}
 
-@media (max-width: 480px) {
-    .video-modal {
-        padding: 5px;
-    }
-    
-    .video-modal__content {
-        max-height: 98vh; /* Еще больше места */
-    }
-    
-    .video-modal__info {
-        padding: 12px;
-    }
-    
-    .video-modal__title {
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-    }
-    
-    .video-modal__description {
-        font-size: 0.8rem;
-    }
-    
-    /* Убедимся, что контент не выходит за пределы */
-    .video-modal__video-container {
-        max-height: 50vh; /* Ограничиваем высоту видео на очень маленьких экранах */
-    }
-}
 @media (max-width: 1300px) {
     .header {
         &__container {
@@ -1239,19 +1156,72 @@ footer {
     .ExamplesOfWork__VideoBlock:nth-child(odd) {
         display: none;
     }
-    .workFormat__block {
-       grid-template-columns: 1fr;
-       grid-template-rows: auto auto;
-    }
-    .workFormat__block_container {
-        margin: 0 20px 0 20px;
-    }
-    .workFormat__block_gif {
-        text-align: left;
-        margin: 20px 20px 0 20px;     
+    .workFormat {
+        &__block {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            &_container {
+                margin: 0 20px 0 20px;
+            }
+            &_gif {
+                text-align: left;
+                margin: 20px 20px 0 20px;  
+            }
+        }
     }
 }
- @media (max-width: 600px) {
+@media (max-width: 1100px) {
+    .video-modal {
+        &__content {
+            width: 95%;
+            height: auto;
+            max-height: 90vh;
+        }
+        &__video-container {
+            height: 0;
+            padding-bottom: 56.25%;
+            position: relative;
+            & iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &__info {
+            padding: 20px;
+            min-height: auto;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .video-modal {
+        padding: 10px;
+        &__content {
+            width: 100%;
+            max-height: 95vh;
+            border-radius: 15px;   
+        }
+        &__info {
+            padding: 15px;
+        }
+        &__title {
+            font-size: 1.3rem;
+        }
+        &__description {
+            font-size: 0.9rem;
+        }
+        &__close {
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
+            font-size: 1.7rem;
+        }
+    }
+}
+@media (max-width: 600px) {
     body {
         padding: 10px;
     }
@@ -1264,7 +1234,7 @@ footer {
     }
     .header {
     &__title {
-                    font-size: 48px;
+        font-size: 48px;
     }
     &__costBlock {
         display: none;
@@ -1327,9 +1297,11 @@ footer {
                     grid-template-columns: auto auto;
                     &_title {
                         font-size: 20px;
+                        margin: 20px 0 0 20px;
                     }
                     &_text {
                         font-size: 14px;
+                        padding: 10px 0 0 20px;
                     }
                     &_video {
                         display: none;
@@ -1428,7 +1400,7 @@ footer {
         grid-template-columns: auto auto;
     }
     .workFormat__block_gif:last-child video {
-        padding-right: 10px;
+        margin-right: 10px;
     }
     }
     .costBlock {
@@ -1472,4 +1444,24 @@ footer {
         grid-template-columns: 50% 50%;
     }
 }
-
+@media (max-width: 480px) {
+    .video-modal {
+        padding: 5px;
+        &__content {
+            max-height: 98vh;
+        }
+        &__info {
+            padding: 12px;
+        }
+        &__title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        &__description {
+            font-size: 0.8rem;
+        }
+        &__video-container {
+            max-height: 50vh;
+        }
+    }
+}

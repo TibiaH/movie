@@ -426,7 +426,7 @@ body.modal-open {
   grid-template-areas: "tl vd" "tx vd";
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(0); /* Добавляем начальное значение */
+  transform: translateX(0);
 }
 .stageOfWork__block:nth-child(odd) {
   transform: translateX(-60px);
@@ -478,6 +478,8 @@ body.modal-open {
 .stageOfWork__block_video {
   grid-area: vd;
   text-align: right;
+  align-content: center;
+  padding-right: 10px;
 }
 .stageOfWork__block:nth-child(1) {
   background-image: url("./IMG/Component1.png");
@@ -1097,77 +1099,6 @@ footer {
   border-radius: 16px;
 }
 
-@media (max-width: 1100px) {
-  .video-modal__content {
-    width: 95%;
-    height: auto;
-    max-height: 90vh; /* Уменьшаем максимальную высоту */
-  }
-  .video-modal__video-container {
-    height: 0;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio для адаптивности */
-    position: relative;
-  }
-  .video-modal__video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .video-modal__info {
-    padding: 20px;
-    min-height: auto;
-  }
-}
-@media (max-width: 768px) {
-  .video-modal {
-    padding: 10px;
-  }
-  .video-modal__content {
-    width: 100%;
-    max-height: 95vh;
-    border-radius: 15px;
-  }
-  .video-modal__info {
-    padding: 15px;
-  }
-  .video-modal__title {
-    font-size: 1.3rem;
-  }
-  .video-modal__description {
-    font-size: 0.9rem;
-  }
-  .video-modal__close {
-    top: 10px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
-    font-size: 1.7rem;
-  }
-}
-@media (max-width: 480px) {
-  .video-modal {
-    padding: 5px;
-  }
-  .video-modal__content {
-    max-height: 98vh; /* Еще больше места */
-  }
-  .video-modal__info {
-    padding: 12px;
-  }
-  .video-modal__title {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-  .video-modal__description {
-    font-size: 0.8rem;
-  }
-  /* Убедимся, что контент не выходит за пределы */
-  .video-modal__video-container {
-    max-height: 50vh; /* Ограничиваем высоту видео на очень маленьких экранах */
-  }
-}
 @media (max-width: 1300px) {
   .header__container {
     grid-template-columns: auto;
@@ -1227,6 +1158,55 @@ footer {
   .workFormat__block_gif {
     text-align: left;
     margin: 20px 20px 0 20px;
+  }
+}
+@media (max-width: 1100px) {
+  .video-modal__content {
+    width: 95%;
+    height: auto;
+    max-height: 90vh;
+  }
+  .video-modal__video-container {
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+  }
+  .video-modal__video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .video-modal__info {
+    padding: 20px;
+    min-height: auto;
+  }
+}
+@media (max-width: 768px) {
+  .video-modal {
+    padding: 10px;
+  }
+  .video-modal__content {
+    width: 100%;
+    max-height: 95vh;
+    border-radius: 15px;
+  }
+  .video-modal__info {
+    padding: 15px;
+  }
+  .video-modal__title {
+    font-size: 1.3rem;
+  }
+  .video-modal__description {
+    font-size: 0.9rem;
+  }
+  .video-modal__close {
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 1.7rem;
   }
 }
 @media (max-width: 600px) {
@@ -1305,9 +1285,11 @@ footer {
   }
   .stageOfWork__block_title {
     font-size: 20px;
+    margin: 20px 0 0 20px;
   }
   .stageOfWork__block_text {
     font-size: 14px;
+    padding: 10px 0 0 20px;
   }
   .stageOfWork__block_video {
     display: none;
@@ -1397,7 +1379,7 @@ footer {
     grid-template-columns: auto auto;
   }
   .workFormat .workFormat__block_gif:last-child video {
-    padding-right: 10px;
+    margin-right: 10px;
   }
   .costBlock {
     text-align: center;
@@ -1438,5 +1420,26 @@ footer {
   }
   #gif2 {
     grid-template-columns: 50% 50%;
+  }
+}
+@media (max-width: 480px) {
+  .video-modal {
+    padding: 5px;
+  }
+  .video-modal__content {
+    max-height: 98vh;
+  }
+  .video-modal__info {
+    padding: 12px;
+  }
+  .video-modal__title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  .video-modal__description {
+    font-size: 0.8rem;
+  }
+  .video-modal__video-container {
+    max-height: 50vh;
   }
 }/*# sourceMappingURL=style.css.map */
