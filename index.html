@@ -53,11 +53,11 @@
         <div class="paragraph1__text">Каждый ролик стал эффективным инструментом для бизнеса.</div>
         </div>
         <div class="ExamplesOfWork">
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “Yangen”"'  data-video-url="https://player.vimeo.com/video/1032826140" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Продуктовый ролик “Yangen”'  data-video-url="https://player.vimeo.com/video/1032826140" data-video-description="Моушн ролик для умного термоса YanGen c системой нагрева и термометром.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 33 (1).png" alt="Yangen ролик"></div>
                 <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик "Yangen"</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик “Aevit”"' data-video-url="https://player.vimeo.com/video/1131058719" data-video-description="Обьясняющий эксплейнер ролик для наномасла Aevit. Использовался в TV рекламе.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Эксплейнер ролик “Aevit”' data-video-url="https://player.vimeo.com/video/1131058719" data-video-description="Обьясняющий эксплейнер ролик для наномасла Aevit. Использовался в TV рекламе.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 35 (1).png" alt="Эксплейнер ролик “Aevit”"></div>
                 <div class="ExamplesOfWork__VideoBlock_text">Эксплейнер ролик “Aevit”</div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 37 (1).png" alt="Bork ролик"></div>
                 <div class="ExamplesOfWork__VideoBlock_text">Имиджевый ролик “Antonio Maretti”</div>
             </div>
-            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик “Fanquip”' data-video-url="https://player.vimeo.com/video/1089630668" data-video-description="Коммерческий моушн ролик для австралийского бренда промышленной вентиляции и его нового продукта - Giant Fan.">
+            <div class="ExamplesOfWork__VideoBlock" data-video-title='Рекламный ролик “Fanquip”' data-video-url="https://player.vimeo.com/video/1089630668" data-video-description="Коммерческий моушн ролик для австралийского  бренда промышленной вентиляции и его нового продукта - Giant Fan.">
                 <div class="ExamplesOfWork__VideoBlock_video"><img src="IMG/Rectangle 41.png" alt="Эксплейнер ролик"></div>
                 <div class="ExamplesOfWork__VideoBlock_text">Рекламный ролик “Fanquip”</div>
             </div>
@@ -78,26 +78,23 @@
                 <div class="ExamplesOfWork__VideoBlock_text">Продуктовый ролик “SureBrash”</div>
             </div>
         </div>
-        <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-        <button class="close-btn" id="closeModal">×</button>
-        <div class="video-container">
-            <iframe id="modalVideo" src="" 
-                    title="Видео ролик" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
-        </div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalVideoTitle">Заголовок видео</h2>
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal__content">
+            <button class="video-modal__close" id="closeModal">&times;</button>
+            <div class="video-modal__video-container">
+                <iframe id="videoPlayer" src="" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowfullscreen
+                        frameborder="0"
+                        style="border: none; outline: none;">
+                </iframe>
             </div>
-            <div class="modal-description" id="modalDescription">
-                Описание видео появится здесь
+            <div class="video-modal__info">
+                <h2 class="video-modal__title" id="modalTitle"></h2>
+                <p class="video-modal__description" id="modalDescription"></p>
             </div>
         </div>
-        </div>
-        </div>
+    </div>
         <div class="paragraph2">
         <div class="paragraph2__title">5 шагов к качественному ролику</div>
         <div class="paragraph2__text">Мы пройдем с вашим проектом через 5 этапов, и получим эффективный результат</div>
@@ -106,7 +103,7 @@
         <div class="stageOfWork__block">
             <div class="stageOfWork__block_title"><span>1.</span> Брифинг и анализ</div>
             <div class="stageOfWork__block_text">Погружаемся в продукт, аудиторию и ваши задачи. <br> <br> Изучаем конкурентов и вашу нишу, что бы сделать ролик который выделяется и продает.</div>
-            <div class="stageOfWork__block_video"><img src="IMG/Rectangle 45.png" alt=""></div>
+            <div class="stageOfWork__block_video"><img style="height: 308px;" src="IMG/Rectangle 45.png" alt=""></div>
         </div>
         <div class="stageOfWork__block">
             <div class="stageOfWork__block_title"><span>2.</span> Концепт и идея</div>
@@ -162,21 +159,21 @@
             <div class="workFormat__block_title">3D-моушн графика</div>
             <div class="workFormat__block_text">Если ваш продукт должен выглядеть премиально и стильно. <br> <br> Подойдет для рекламных кампаний, сайтов и презентаций. Усилит имидж бренда.</div>
             </div>
-            <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Product Motion Showreel 2.mp4" type="video/mp4"></video></div>
+            <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px; "><source src="IMG/Final (Hand Brake)/Product Motion Showreel 2.mp4" type="video/mp4"></video></div>
         </div>
         <div class="workFormat__block">
             <div class="workFormat__block_container">
             <div class="workFormat__block_title">Объясняющее видео “эксплейнер”</div>
             <div class="workFormat__block_text">Для компаний со сложными или технологичными продуктами. <br> <br> Наглядным способом объяснит, как работает продукт или компания, покажет пользу для клиента.</div>
             </div>
-            <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Explainer Showreel 2.mp4" type="video/mp4"></video></div>
+            <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px; border: 0.6px solid rgba(139, 139, 139, 0.5);"><source src="IMG/Final (Hand Brake)/Explainer Showreel 2.mp4" type="video/mp4"></video></div>
         </div>
         <div class="workFormat__block">
             <div class="workFormat__block_container">
             <div class="workFormat__block_title">Видео для соцсетей</div>
             <div class="workFormat__block_text">Короткие, вовлекающие 3D-ролики, помогут вашему бренду быть в центре внимания. <br> <br> Динамично покажут продукт и привлекут новую аудиторию. <br> <br> Reels | Stories | YouTube | TikTok</div>
             </div>
-            <div class="workFormat__block_gif" id="gif2" style="margin-right: 20px;"><video width="232px" height="304px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/1 SocialMedia Vide_2.mp4" type="video/mp4"></video><video width="232px" height="304px" autoplay muted loop playsinline style="border-radius: 20px;"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/ZNAT_3.mp4" type="video/mp4"></video></div>
+            <div class="workFormat__block_gif" id="gif2" style="margin-right: 20px;"><video width="232px" height="304px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px; border: 0.6px solid rgba(139, 139, 139, 0.5);"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/1 SocialMedia Vide_2.mp4" type="video/mp4"></video><video width="232px" height="304px" autoplay muted loop playsinline style="border-radius: 20px; border: 0.6px solid rgba(139, 139, 139, 0.5);"><source src="IMG/Final (Hand Brake)/Final (Hand Brake) (1)/ZNAT_3.mp4" type="video/mp4"></video></div>
         </div>
         </div>
         <div class="costBlock">

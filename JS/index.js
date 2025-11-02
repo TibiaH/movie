@@ -1,154 +1,63 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const blocks = document.querySelectorAll('.stageOfWork__block');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-            }
-        });
-    }, {
-        threshold: 0.15, // Анимация запустится когда 15% элемента видно
-        rootMargin: '0px 0px -30px 0px'
-    });
-    
-    blocks.forEach(block => {
-        observer.observe(block);
-    });
-});
+    // Выбираем все блоки с видео из обеих секций
+    const videoBlocks = document.querySelectorAll('.ExamplesOfWork__VideoBlock, .header__block');
+    const videoModal = document.getElementById('videoModal');
+    const closeModal = document.getElementById('closeModal');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
 
-function openModal(buttonOrBlock) {
-    let videoBlock, videoTitle, videoUrl, videoDescription;
-    
-    // Определяем блок (ваш существующий код)
-    if (buttonOrBlock.classList.contains('header__block')) {
-        videoBlock = buttonOrBlock;
-    } else if (buttonOrBlock.classList.contains('ExamplesOfWork__VideoBlock')) {
-        videoBlock = buttonOrBlock;
-    } else {
-        if (buttonOrBlock.closest('.ExamplesOfWork__VideoBlock')) {
-            videoBlock = buttonOrBlock.closest('.ExamplesOfWork__VideoBlock');
-        } else if (buttonOrBlock.closest('.header__block')) {
-            videoBlock = buttonOrBlock.closest('.header__block');
-        } else {
-            console.error('Блок не найден');
-            return;
-        }
-    }
-    
-    // Получаем данные
-    videoTitle = videoBlock.getAttribute('data-video-title');
-    videoUrl = videoBlock.getAttribute('data-video-url');
-    videoDescription = videoBlock.getAttribute('data-video-description');
-    
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalTitle = document.getElementById('modalVideoTitle');
-    const videoContainer = document.querySelector('.video-container');
-    const modalDescription = document.querySelector('.modal-description');
-    
-    // Очищаем контейнер
-    videoContainer.innerHTML = '';
-    
-    // СОЗДАЕМ IFRAME ДЛЯ VIMEO
-    function createVimeoIframe(vimeoUrl) {
-        const iframe = document.createElement('iframe');
-        
-        // Обрабатываем URL Vimeo
-        let finalUrl = vimeoUrl;
-        
-        // Если это просто ID видео, формируем полный URL
-        if (!vimeoUrl.includes('player.vimeo.com')) {
-            finalUrl = `https://player.vimeo.com/video/${vimeoUrl}`;
-        }
-        
-        // Добавляем параметры к URL
-        const url = new URL(finalUrl);
-        url.searchParams.append('autoplay', '1');
-        url.searchParams.append('title', '0');
-        url.searchParams.append('byline', '0');
-        url.searchParams.append('portrait', '0');
-        url.searchParams.append('dnt', '1'); // Отключаем отслеживание
-        
-        iframe.src = url.toString();
-        iframe.frameBorder = '0';
-        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.minHeight = '400px';
-        
-        return iframe;
-    }
-    
-    // Создаем и добавляем iframe
-    const vimeoIframe = createVimeoIframe(videoUrl);
-    videoContainer.appendChild(vimeoIframe);
-    
-    // Устанавливаем контент
-    modalTitle.textContent = videoTitle;
-    modalDescription.textContent = videoDescription;
-    
-    // Показываем модальное окно
-    modalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Функция закрытия (с остановкой Vimeo видео)
-function closeModal() {
-    const modalOverlay = document.getElementById('modalOverlay');
-    const videoContainer = document.querySelector('.video-container');
-    
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    
-    // Останавливаем Vimeo видео
-    const iframe = videoContainer.querySelector('iframe');
-    if (iframe) {
-        // Заменяем src чтобы остановить видео
-        iframe.src = '';
-    }
-}
-
-// Инициализация (ваш существующий код)
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.getElementById('modalOverlay').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
-    });
-    
-    // Добавляем обработчики для видео блоков
-    const videoBlocks = document.querySelectorAll('.ExamplesOfWork__VideoBlock');
+    // Открытие модального окна при клике на любую карточку
     videoBlocks.forEach(block => {
-        const playButton = document.createElement('button');
-        playButton.className = 'video-play-button';
-        playButton.innerHTML = '▶';
-        playButton.onclick = function(e) {
-            e.stopPropagation();
-            openModal(this);
-        };
-        
-        const videoContainer = block.querySelector('.ExamplesOfWork__VideoBlock_video');
-        if (videoContainer) {
-            videoContainer.appendChild(playButton);
+        block.addEventListener('click', function() {
+            const videoUrl = this.getAttribute('data-video-url');
+            const videoTitle = this.getAttribute('data-video-title');
+            const videoDescription = this.getAttribute('data-video-description');
+            
+            // Устанавливаем данные в модальное окно
+            videoPlayer.src = videoUrl;
+            modalTitle.textContent = videoTitle;
+            modalDescription.textContent = videoDescription;
+            
+            // Показываем модальное окно
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+        });
+    });
+
+    // Закрытие модального окна
+    closeModal.addEventListener('click', function() {
+        closeVideoModal();
+    });
+
+    // Закрытие модального окна при клике вне контента
+    videoModal.addEventListener('click', function(e) {
+        if (e.target === videoModal) {
+            closeVideoModal();
         }
-        
-        block.style.cursor = 'pointer';
-        block.addEventListener('click', function() {
-            openModal(playButton);
-        });
     });
-    
-    // Обработчики для header блоков
-    const headerBlocks = document.querySelectorAll('.header__block');
-    headerBlocks.forEach(block => {
-        block.style.cursor = 'pointer';
-        block.addEventListener('click', function() {
-            openModal(this);
-        });
+
+    // Закрытие модального окна при нажатии Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeVideoModal();
+        }
     });
+
+    function closeVideoModal() {
+        videoModal.classList.remove('active');
+        videoPlayer.src = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+    }
+
+    // Предотвращаем скролл страницы когда модальное окно открыто
+    videoModal.addEventListener('touchmove', function(e) {
+        if (e.target === videoModal) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
