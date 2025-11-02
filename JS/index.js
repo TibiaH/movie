@@ -233,3 +233,26 @@ priceForm.addEventListener('submit', async function(event) {
 
 
 
+// Анимация появления блоков при скролле
+document.addEventListener('DOMContentLoaded', function() {
+    const stageBlocks = document.querySelectorAll('.stageOfWork__block');
+    
+    // Создаем наблюдатель за видимостью элементов
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                // Отключаем наблюдение после появления
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1, // Срабатывает когда 10% элемента видно
+        rootMargin: '0px 0px -50px 0px' // Срабатывает немного раньше
+    });
+
+    // Начинаем наблюдать за каждым блоком
+    stageBlocks.forEach(block => {
+        observer.observe(block);
+    });
+});

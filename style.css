@@ -426,6 +426,7 @@ body.modal-open {
   grid-template-areas: "tl vd" "tx vd";
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0); /* Добавляем начальное значение */
 }
 .stageOfWork__block:nth-child(odd) {
   transform: translateX(-60px);

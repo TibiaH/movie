@@ -430,96 +430,97 @@ body.modal-open {
     grid-template-columns: 1fr;
 
     &__block {
-    max-height: 328px;
-    height: 100%;
-    border-radius: 28px;
-    background-size: cover;
-    display: grid;
-    border: 0.6px solid rgba(139, 139, 139, 0.5);
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-    "tl vd"
-    "tx vd";
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        max-height: 328px;
+        height: 100%;
+        border-radius: 28px;
+        background-size: cover;
+        display: grid;
+        border: 0.6px solid rgba(139, 139, 139, 0.5);
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "tl vd"
+            "tx vd";
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(0); /* Добавляем начальное значение */
 
-    &:nth-child(odd) {
-    transform: translateX(-60px); 
+        &:nth-child(odd) {
+            transform: translateX(-60px); 
 
-    &.animate {
-    opacity: 1;
-    transform: translateX(0);
-    }
-    }
-        
-    &:nth-child(even) {
-    transform: translateX(60px);
+            &.animate {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
             
-    &.animate {
-    opacity: 1;
-    transform: translateX(0);
-    }
-    }
+        &:nth-child(even) {
+            transform: translateX(60px);
+                    
+            &.animate {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-    &:nth-child(1) { transition-delay: 0.1s; }
-    &:nth-child(2) { transition-delay: 0.2s; }
-    &:nth-child(3) { transition-delay: 0.3s; }
-    &:nth-child(4) { transition-delay: 0.4s; }
-    &:nth-child(5) { transition-delay: 0.5s; }
+        &:nth-child(1) { transition-delay: 0.1s; }
+        &:nth-child(2) { transition-delay: 0.2s; }
+        &:nth-child(3) { transition-delay: 0.3s; }
+        &:nth-child(4) { transition-delay: 0.4s; }
+        &:nth-child(5) { transition-delay: 0.5s; }
 
-    &_title {
-    grid-area: tl;
-    font-size: 40px;
-    font-weight: 600;
-    color: #fff;
-    margin: 30px 0 0 30px;
-    font-family: 'Montserrat Alternates', sans-serif;
-    }
+        &_title {
+            grid-area: tl;
+            font-size: 40px;
+            font-weight: 600;
+            color: #fff;
+            margin: 30px 0 0 30px;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
 
-    &_text {
-    grid-area: tx;
-    font-size: 17px;
-    color: #fff;
-    font-weight: lighter;
-    max-width: 440px;
-    align-content: end;
-    padding: 30px;
-    margin-bottom: 40px;
-    }
+        &_text {
+            grid-area: tx;
+            font-size: 17px;
+            color: #fff;
+            font-weight: lighter;
+            max-width: 440px;
+            align-content: end;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
 
-    &_video {
-    grid-area: vd;
-    text-align: right;
-    }
+        &_video {
+            grid-area: vd;
+            text-align: right;
+        }
     }
     
     &__block:nth-child(1) {
-    background-image: url('./IMG/Component1.png');
+        background-image: url('./IMG/Component1.png');
     }
     
     &__block:nth-child(odd) {
-    background-color: #1A1918;
-    opacity: 94%;
+        background-color: #1A1918;
+        opacity: 94%;
     }
     
     &__block:nth-child(even) {
-    background-color: #4B4A4A;
+        background-color: #4B4A4A;
     }
     
     &__block:nth-child(2) {
-    background-image: url('./IMG/Group2.png');
+        background-image: url('./IMG/Group2.png');
     }
     
     &__block:nth-child(3) {
-    background-image: url('./IMG/Component3.png');
+        background-image: url('./IMG/Component3.png');
     }
     
     &__block:nth-child(4) {
-    background-image: url('./IMG/Mask2.png');
+        background-image: url('./IMG/Mask2.png');
     }
     
     &__block:nth-child(5) {
-    background-image: url('./IMG/Component5.png');
+        background-image: url('./IMG/Component5.png');
     }
 }
 .showreel {
