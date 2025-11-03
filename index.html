@@ -178,7 +178,7 @@
             <div class="workFormat__block_title">3D-моушн графика</div>
             <div class="workFormat__block_text">Если ваш продукт должен выглядеть премиально и стильно. <br> <br> Подойдет для рекламных кампаний, сайтов и презентаций. Усилит имидж бренда.</div>
             </div>
-            <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px; "><source src="IMG/Final (Hand Brake)/Product Motion Showreel 2.mp4" type="video/mp4"></video></div>
+            <div class="workFormat__block_gif"><video width="490px" height="277px" autoplay muted loop playsinline style="border-radius: 20px; margin-right: 20px; border: 0.6px solid rgba(139, 139, 139, 0.5);"><source src="IMG/Final (Hand Brake)/Product Motion Showreel 2.mp4" type="video/mp4"></video></div>
         </div>
         <div class="workFormat__block">
             <div class="workFormat__block_container">
@@ -203,33 +203,36 @@
         <div id="priceModal" class="price-modal">
         <div class="price-modal-content">
         <div class="price-modal-header">
-            <h2 style="font-size: 24px;">Скачать прайс-лист на все типы графики в 1 клик</h2>
+            <h2>Скачать прайс-лист на все типы графики в 1 клик</h2>
             <button class="price-close" style="display: none;">&times;</button>
         </div>
         <div class="price-modal-body">
             <div class="price-modal-image">
-                <img src="IMG/Rectangle 107.png" alt="3D графика" style="width: 100%; height: auto; border-radius: 10px;">
+                <img src="IMG/priceimage.png" alt="3D графика" style="width: 100%; height: auto; border-radius: 10px;">
             </div>
-
-            <form id="priceForm" class="price-form">
-                <div class="price-form-group">
-                    <div class="price-select-wrapper">
-                        <select id="messenger" required>
-                            <option value="" disabled selected>Выберите мессенджер <img src="IMG/Caret_Down_MD.png" alt="▼" class="dropdown-arrow"></option>
-                            <option value="telegram">Telegram</option>
-                            <option value="whatsapp">WhatsApp</option>
-                        </select>
+    <form id="priceForm" class="price-form">
+        <div class="price-form-group">
+            <div class="price-select-wrapper">
+                <div class="custom-select" id="messengerSelect">
+                    <div class="select-selected">
+                        <span>Выберите мессенджер</span>
+                        <img src="IMG/Caret_Down_MD.png" alt="▼" class="dropdown-arrow">
                     </div>
+                <div class="select-items">
+                    <div class="select-option" data-value="telegram">Telegram</div>
+                    <div class="select-option" data-value="whatsapp">WhatsApp</div>
                 </div>
-                
-                <div class="price-form-group">
-                    <div class="price-input-wrapper">
-                        <input type="text" id="phone" placeholder="Номер телефона/Никнейм" required maxlength="50">
-                    </div>
+                <input type="hidden" id="messenger" name="messenger" required>
                 </div>
-                
-                <button type="submit" class="price-submit-btn">Получить прайс-лист</button>
-            </form>
+            </div>
+        </div>
+    <div class="price-form-group">
+        <div class="price-input-wrapper">
+            <input type="text" id="phone" placeholder="Номер телефона/Никнейм" required maxlength="50">
+        </div>
+    </div>
+    <button type="submit" class="price-submit-btn">Получить прайс-лист</button>
+    </form>
         </div>
     </div>
         </div>

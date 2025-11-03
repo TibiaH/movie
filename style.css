@@ -57,9 +57,11 @@ header::after {
   z-index: 2;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .header__block:hover {
-  margin-top: -10px;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 .header__block_image {
   text-align: center;
@@ -551,6 +553,7 @@ body.modal-open {
   margin-top: 80px;
   padding: 30px 0 0 30px;
   display: grid;
+  border: 0.6px solid rgba(139, 139, 139, 0.5);
   grid-template-rows: 35% 35% 30%;
   grid-template-areas: "tl mn" "tx mn" "dr mn";
 }
@@ -734,6 +737,7 @@ body.modal-open {
   background-color: #1A1918;
   border-radius: 28px;
   margin-top: 80px;
+  border: 0.6px solid rgba(139, 139, 139, 0.5);
   margin-bottom: 80px;
   display: grid;
   grid-template-rows: auto auto auto;
@@ -827,7 +831,7 @@ body.modal-open {
 .price-modal-content {
   background: #1C1B19;
   width: 90%;
-  max-width: 500px;
+  max-width: 450px;
   border-radius: 31px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
@@ -845,12 +849,14 @@ body.modal-open {
   }
 }
 .price-modal-header {
-  padding: 30px 20px 20px;
+  padding: 30px 0px 0px;
   text-align: center;
   position: relative;
 }
 
 .price-modal-header h2 {
+  max-width: 350px;
+  font-size: 24px;
   background: linear-gradient(135deg, #EEC481 0%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -860,14 +866,9 @@ body.modal-open {
   display: inline-block;
 }
 
-.price-modal-body {
-  padding: 0 40px 30px;
-}
-
 .price-modal-image {
   width: 100%;
-  max-width: 360px;
-  margin: 0 auto 50px;
+  margin: 0 auto;
   display: block;
   border-radius: 10px;
   display: flex;
@@ -875,6 +876,12 @@ body.modal-open {
   justify-content: center;
   font-style: italic;
   overflow: hidden;
+}
+.price-modal-image img {
+  max-width: 300px;
+  max-height: 300px;
+  margin: 20px 0 30px 0;
+  border-radius: 20px;
 }
 
 .price-form-group {
@@ -895,6 +902,78 @@ label {
   margin: 0 auto;
 }
 
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.select-selected {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #57544D;
+  border-radius: 14px;
+  height: 50px;
+  font-size: 16px;
+  background: #363431;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.select-selected.active {
+  border-radius: 14px 14px 0 0;
+  border-bottom: 1px solid #57544D;
+}
+
+.select-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #363431;
+  border: 1px solid #57544D;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  z-index: 99;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.select-items.show {
+  display: block;
+}
+
+.select-option {
+  padding: 12px 15px;
+  color: white;
+  cursor: pointer;
+  border-bottom: 1px solid #57544D;
+}
+
+.select-option:last-child {
+  border-bottom: none;
+}
+
+.select-option:hover {
+  background: #57544D;
+}
+
+.select-option.selected {
+  background: #EEC481;
+  color: #000;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+}
+
+.select-selected.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
 .price-select-wrapper select {
   width: 100%;
   padding: 12px 15px;
@@ -908,15 +987,25 @@ label {
      -moz-appearance: none;
           appearance: none;
   cursor: pointer;
+  padding-right: 40px;
 }
-.price-select-wrapper select::after {
-  content: "▼";
-  font-size: 12px;
+
+.price-select-wrapper::after {
+  content: "";
   position: absolute;
   top: 50%;
-  transform: translateY(-30%);
+  right: 15px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
   pointer-events: none;
-  color: red;
+}
+
+.price-select-wrapper select::-ms-expand {
+  display: none;
 }
 
 .price-input-wrapper {

@@ -131,18 +131,93 @@ const CHAT_ID = '952089103';
 // Получаем все кнопки для открытия модального окна
 const openBtns = document.querySelectorAll('.costBlock__menu'); // Добавьте этот класс к обеим кнопкам
 
+// Инициализация кастомного селекта
+function initCustomSelect() {
+    const customSelect = document.getElementById('messengerSelect');
+    if (!customSelect) return;
+
+    const selectSelected = customSelect.querySelector('.select-selected');
+    const selectItems = customSelect.querySelector('.select-items');
+    const hiddenInput = customSelect.querySelector('input[type="hidden"]');
+    const options = customSelect.querySelectorAll('.select-option');
+
+    // Открытие/закрытие выпадающего списка
+    selectSelected.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectItems.classList.toggle('show');
+        selectSelected.classList.toggle('active');
+    });
+
+    // Выбор опции
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            const text = this.textContent;
+            
+            // Убираем выделение со всех опций
+            options.forEach(opt => opt.classList.remove('selected'));
+            // Добавляем выделение выбранной опции
+            this.classList.add('selected');
+            
+            // Обновляем отображаемый текст
+            selectSelected.querySelector('span').textContent = text;
+            selectSelected.style.color = 'white';
+            
+            // Устанавливаем значение скрытого поля
+            hiddenInput.value = value;
+            
+            // Закрываем список
+            selectItems.classList.remove('show');
+            selectSelected.classList.remove('active');
+            
+            // Валидация
+            hiddenInput.setAttribute('data-valid', 'true');
+        });
+    });
+
+    // Закрытие при клике вне элемента
+    document.addEventListener('click', function(e) {
+        if (!customSelect.contains(e.target)) {
+            selectItems.classList.remove('show');
+            selectSelected.classList.remove('active');
+        }
+    });
+}
+
 // Открытие модального окна прайс-листа для всех кнопок
 openBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         priceModal.style.display = 'flex';
         priceForm.reset();
+        // Сбрасываем кастомный селект
+        resetCustomSelect();
     });
 });
+
+// Сброс кастомного селекта
+function resetCustomSelect() {
+    const customSelect = document.getElementById('messengerSelect');
+    if (!customSelect) return;
+
+    const selectSelected = customSelect.querySelector('.select-selected');
+    const hiddenInput = customSelect.querySelector('input[type="hidden"]');
+    const options = customSelect.querySelectorAll('.select-option');
+
+    selectSelected.querySelector('span').textContent = 'Выберите мессенджер';
+    selectSelected.style.color = '#aaa';
+    hiddenInput.value = '';
+    
+    options.forEach(opt => opt.classList.remove('selected'));
+    
+    selectSelected.classList.remove('active');
+    customSelect.querySelector('.select-items').classList.remove('show');
+}
 
 // Закрытие модального окна прайс-листа
 priceCloseBtn.addEventListener('click', function() {
     priceModal.style.display = 'none';
     priceForm.reset();
+    resetCustomSelect();
 });
 
 // Закрытие при клике вне модального окна
@@ -150,6 +225,7 @@ window.addEventListener('click', function(event) {
     if (event.target === priceModal) {
         priceModal.style.display = 'none';
         priceForm.reset();
+        resetCustomSelect();
     }
     if (event.target === successModal) {
         successModal.style.display = 'none';
@@ -186,8 +262,18 @@ async function sendToTelegram(messenger, phone) {
 priceForm.addEventListener('submit', async function(event) {
     event.preventDefault();
     
-    const messenger = document.getElementById('messenger').value;
+    // Получаем значение из кастомного селекта
+    const messengerInput = document.getElementById('messenger');
+    const messenger = messengerInput.value;
     const phone = document.getElementById('phone').value;
+    
+    // Валидация выбора мессенджера
+    if (!messenger) {
+        const customSelect = document.getElementById('messengerSelect');
+        const selectSelected = customSelect.querySelector('.select-selected');
+        selectSelected.style.borderColor = '#ff4444';
+        return;
+    }
     
     // Показываем загрузку
     const submitBtn = priceForm.querySelector('button[type="submit"]');
@@ -199,14 +285,24 @@ priceForm.addEventListener('submit', async function(event) {
         // Отправляем в Telegram
         const success = await sendToTelegram(messenger, phone);
         
-        // Закрываем основное модальное окно
-        priceModal.style.display = 'none';
-        
-        // Показываем окно успеха
-        successModal.style.display = 'flex';
-        
-        // Сбрасываем форму
-        priceForm.reset();
+        if (success) {
+            // Закрываем основное модальное окно
+            priceModal.style.display = 'none';
+            
+            // Показываем окно успеха
+            successModal.style.display = 'flex';
+            
+            // Сбрасываем форму
+            priceForm.reset();
+            resetCustomSelect();
+            
+            // Через 3 секунды закрываем окно успеха
+            setTimeout(function() {
+                successModal.style.display = 'none';
+            }, 3000);
+        } else {
+            alert('Ошибка отправки. Попробуйте еще раз.');
+        }
         
     } catch (error) {
         console.error('Error:', error);
@@ -216,23 +312,21 @@ priceForm.addEventListener('submit', async function(event) {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }
-    
-    // Через 3 секунды закрываем окно успеха
-    setTimeout(function() {
-        successModal.style.display = 'none';
-    }, 3000);
 });
 
- function scrollToTarget() {
-            const targetElement = document.getElementById('section1');
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }
+// Функция плавной прокрутки
+function scrollToTarget() {
+    const targetElement = document.getElementById('section1');
+    targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+}
 
-
-
+// Инициализация кастомного селекта при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    initCustomSelect();
+});
 // Анимация появления блоков при скролле
 document.addEventListener('DOMContentLoaded', function() {
     const stageBlocks = document.querySelectorAll('.stageOfWork__block');
