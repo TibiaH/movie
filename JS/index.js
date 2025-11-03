@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Выбираем все блоки с видео из обеих секций
     const videoBlocks = document.querySelectorAll('.ExamplesOfWork__VideoBlock, .header__block');
     const videoModal = document.getElementById('videoModal');
     const closeModal = document.getElementById('closeModal');
@@ -7,42 +6,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalTitle = document.getElementById('modalTitle');
     const modalDescription = document.getElementById('modalDescription');
 
-    // Открытие модального окна при клике на любую карточку
     videoBlocks.forEach(block => {
         block.addEventListener('click', function() {
             const videoUrl = this.getAttribute('data-video-url');
             const videoTitle = this.getAttribute('data-video-title');
             const videoDescription = this.getAttribute('data-video-description');
             
-            // Устанавливаем данные в модальное окно
             videoPlayer.src = videoUrl;
             modalTitle.textContent = videoTitle;
             modalDescription.textContent = videoDescription;
             
-            // Показываем модальное окно
             videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
         });
     });
 
-    // Закрытие модального окна
-    closeModal.addEventListener('click', function() {
-        closeVideoModal();
-    });
+    closeModal.addEventListener('click', closeVideoModal);
 
-    // Закрытие модального окна при клике вне контента
     videoModal.addEventListener('click', function(e) {
-        if (e.target === videoModal) {
-            closeVideoModal();
-        }
+        if (e.target === videoModal) closeVideoModal();
     });
 
-    // Закрытие модального окна при нажатии Escape
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-            closeVideoModal();
-        }
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideoModal();
     });
 
     function closeVideoModal() {
@@ -52,86 +39,55 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.style.overflow = '';
     }
 
-    // Предотвращаем скролл страницы когда модальное окно открыто
     videoModal.addEventListener('touchmove', function(e) {
-        if (e.target === videoModal) {
-            e.preventDefault();
-        }
+        if (e.target === videoModal) e.preventDefault();
     }, { passive: false });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Используем querySelectorAll для всех dropdown меню
     const dropdownMenus = document.querySelectorAll('.dropdown-menu2');
     
     dropdownMenus.forEach(function(dropdownMenu) {
         const dropdownToggle = dropdownMenu.querySelector('.dropdown-toggle2');
         
-        // Открытие/закрытие по клику
         dropdownToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             
-            // Закрываем все остальные открытые меню
             dropdownMenus.forEach(function(otherMenu) {
-                if (otherMenu !== dropdownMenu) {
-                    otherMenu.classList.remove('active');
-                }
+                if (otherMenu !== dropdownMenu) otherMenu.classList.remove('active');
             });
             
-            // Переключаем текущее меню
             dropdownMenu.classList.toggle('active');
         });
     });
     
-    // Закрытие при клике вне меню
     document.addEventListener('click', function(e) {
         let isClickInside = false;
         
         dropdownMenus.forEach(function(dropdownMenu) {
-            if (dropdownMenu.contains(e.target)) {
-                isClickInside = true;
-            }
+            if (dropdownMenu.contains(e.target)) isClickInside = true;
         });
         
-        if (!isClickInside) {
-            dropdownMenus.forEach(function(dropdownMenu) {
-                dropdownMenu.classList.remove('active');
-            });
-        }
+        if (!isClickInside) dropdownMenus.forEach(d => d.classList.remove('active'));
     });
     
-    // Закрытие при нажатии Escape
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            dropdownMenus.forEach(function(dropdownMenu) {
-                dropdownMenu.classList.remove('active');
-            });
-        }
+        if (e.key === 'Escape') dropdownMenus.forEach(d => d.classList.remove('active'));
     });
 });
 
-
 function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Получаем элементы DOM для прайс-листа
 const priceModal = document.getElementById('priceModal');
 const successModal = document.getElementById('successModal');
 const priceCloseBtn = document.querySelector('.price-close');
 const priceForm = document.getElementById('priceForm');
-
-// Конфигурация бота (ЗАМЕНИТЕ НА СВОИ ДАННЫЕ)
 const BOT_TOKEN = '8310260346:AAGUoK62ehPDc-r5BmqaHs4SuM9ZifWpEoM';
 const CHAT_ID = '952089103';
+const openBtns = document.querySelectorAll('.costBlock__menu');
 
-// Получаем все кнопки для открытия модального окна
-const openBtns = document.querySelectorAll('.costBlock__menu'); // Добавьте этот класс к обеим кнопкам
-
-// Инициализация кастомного селекта
 function initCustomSelect() {
     const customSelect = document.getElementById('messengerSelect');
     if (!customSelect) return;
@@ -141,41 +97,30 @@ function initCustomSelect() {
     const hiddenInput = customSelect.querySelector('input[type="hidden"]');
     const options = customSelect.querySelectorAll('.select-option');
 
-    // Открытие/закрытие выпадающего списка
     selectSelected.addEventListener('click', function(e) {
         e.stopPropagation();
         selectItems.classList.toggle('show');
         selectSelected.classList.toggle('active');
     });
 
-    // Выбор опции
     options.forEach(option => {
         option.addEventListener('click', function() {
             const value = this.getAttribute('data-value');
             const text = this.textContent;
             
-            // Убираем выделение со всех опций
             options.forEach(opt => opt.classList.remove('selected'));
-            // Добавляем выделение выбранной опции
             this.classList.add('selected');
             
-            // Обновляем отображаемый текст
             selectSelected.querySelector('span').textContent = text;
             selectSelected.style.color = 'white';
-            
-            // Устанавливаем значение скрытого поля
             hiddenInput.value = value;
             
-            // Закрываем список
             selectItems.classList.remove('show');
             selectSelected.classList.remove('active');
-            
-            // Валидация
             hiddenInput.setAttribute('data-valid', 'true');
         });
     });
 
-    // Закрытие при клике вне элемента
     document.addEventListener('click', function(e) {
         if (!customSelect.contains(e.target)) {
             selectItems.classList.remove('show');
@@ -184,17 +129,14 @@ function initCustomSelect() {
     });
 }
 
-// Открытие модального окна прайс-листа для всех кнопок
 openBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         priceModal.style.display = 'flex';
         priceForm.reset();
-        // Сбрасываем кастомный селект
         resetCustomSelect();
     });
 });
 
-// Сброс кастомного селекта
 function resetCustomSelect() {
     const customSelect = document.getElementById('messengerSelect');
     if (!customSelect) return;
@@ -206,147 +148,113 @@ function resetCustomSelect() {
     selectSelected.querySelector('span').textContent = 'Выберите мессенджер';
     selectSelected.style.color = '#aaa';
     hiddenInput.value = '';
-    
     options.forEach(opt => opt.classList.remove('selected'));
-    
     selectSelected.classList.remove('active');
     customSelect.querySelector('.select-items').classList.remove('show');
 }
 
-// Закрытие модального окна прайс-листа
 priceCloseBtn.addEventListener('click', function() {
     priceModal.style.display = 'none';
     priceForm.reset();
     resetCustomSelect();
 });
 
-// Закрытие при клике вне модального окна
 window.addEventListener('click', function(event) {
     if (event.target === priceModal) {
         priceModal.style.display = 'none';
         priceForm.reset();
         resetCustomSelect();
     }
-    if (event.target === successModal) {
-        successModal.style.display = 'none';
-    }
+    if (event.target === successModal) successModal.style.display = 'none';
 });
 
-// Функция отправки в Telegram
 async function sendToTelegram(messenger, phone) {
     const message = `📋 Новая заявка на прайс-лист:\n📱 Мессенджер: ${messenger}\n📞 Контакт: ${phone}\n⏰ Время: ${new Date().toLocaleString()}`;
     
     try {
         const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: message,
-                parse_mode: 'HTML'
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'HTML' })
         });
         
         const data = await response.json();
-        console.log('Telegram response:', data);
         return data.ok;
     } catch (error) {
-        console.error('Error sending to Telegram:', error);
         return false;
     }
 }
 
-// Обработка отправки формы прайс-листа
 priceForm.addEventListener('submit', async function(event) {
     event.preventDefault();
     
-    // Получаем значение из кастомного селекта
     const messengerInput = document.getElementById('messenger');
     const messenger = messengerInput.value;
     const phone = document.getElementById('phone').value;
     
-    // Валидация выбора мессенджера
     if (!messenger) {
         const customSelect = document.getElementById('messengerSelect');
-        const selectSelected = customSelect.querySelector('.select-selected');
-        selectSelected.style.borderColor = '#ff4444';
+        customSelect.querySelector('.select-selected').style.borderColor = '#ff4444';
         return;
     }
     
-    // Показываем загрузку
     const submitBtn = priceForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Отправка...';
     submitBtn.disabled = true;
     
     try {
-        // Отправляем в Telegram
         const success = await sendToTelegram(messenger, phone);
         
         if (success) {
-            // Закрываем основное модальное окно
             priceModal.style.display = 'none';
-            
-            // Показываем окно успеха
             successModal.style.display = 'flex';
-            
-            // Сбрасываем форму
             priceForm.reset();
             resetCustomSelect();
             
-            // Через 3 секунды закрываем окно успеха
-            setTimeout(function() {
-                successModal.style.display = 'none';
-            }, 3000);
-        } else {
-            alert('Ошибка отправки. Попробуйте еще раз.');
-        }
+            setTimeout(() => successModal.style.display = 'none', 3000);
+        } else alert('Ошибка отправки. Попробуйте еще раз.');
         
     } catch (error) {
-        console.error('Error:', error);
         alert('Ошибка отправки. Попробуйте еще раз.');
     } finally {
-        // Восстанавливаем кнопку
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }
 });
 
-// Функция плавной прокрутки
 function scrollToTarget() {
-    const targetElement = document.getElementById('section1');
-    targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-    });
+    document.getElementById('section1').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Инициализация кастомного селекта при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    initCustomSelect();
-});
-// Анимация появления блоков при скролле
-document.addEventListener('DOMContentLoaded', function() {
-    const stageBlocks = document.querySelectorAll('.stageOfWork__block');
+    const blocks = document.querySelectorAll('.stageOfWork__block');
     
-    // Создаем наблюдатель за видимостью элементов
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                // Отключаем наблюдение после появления
-                observer.unobserve(entry.target);
-            }
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return rect.top <= window.innerHeight * 0.85;
+    }
+    
+    function handleScrollAnimation() {
+        blocks.forEach(block => {
+            if (isElementInViewport(block)) block.classList.add('animate');
         });
-    }, {
-        threshold: 0.1, // Срабатывает когда 10% элемента видно
-        rootMargin: '0px 0px -50px 0px' // Срабатывает немного раньше
+    }
+    
+    let ticking = false;
+    function updateOnScroll() {
+        handleScrollAnimation();
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateOnScroll);
+            ticking = true;
+        }
     });
-
-    // Начинаем наблюдать за каждым блоком
-    stageBlocks.forEach(block => {
-        observer.observe(block);
-    });
+    
+    handleScrollAnimation();
+    window.addEventListener('resize', handleScrollAnimation);
+    window.addEventListener('load', handleScrollAnimation);
 });

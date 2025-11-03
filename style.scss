@@ -443,31 +443,12 @@ body.modal-open {
         "tx vd";
         opacity: 0;
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateX(0);
+        transform: translateY(60px); /* ИЗМЕНИТЬ НА translateY */
 
-        &:nth-child(odd) {
-            transform: translateX(-60px); 
-
-            &.animate {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        &.animate {
+            opacity: 1;
+            transform: translateY(0); /* ИЗМЕНИТЬ НА translateY */
         }
-            
-        &:nth-child(even) {
-            transform: translateX(60px);
-                    
-            &.animate {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        &:nth-child(1) { transition-delay: 0.1s; }
-        &:nth-child(2) { transition-delay: 0.2s; }
-        &:nth-child(3) { transition-delay: 0.3s; }
-        &:nth-child(4) { transition-delay: 0.4s; }
-        &:nth-child(5) { transition-delay: 0.5s; }
 
         &_title {
             grid-area: tl;
@@ -497,6 +478,7 @@ body.modal-open {
         }
     }
     
+    /* Остальные стили остаются без изменений */
     &__block:nth-child(1) {
         background-image: url('./IMG/Component1.png');
     }

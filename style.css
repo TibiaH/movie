@@ -416,6 +416,7 @@ body.modal-open {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
+  /* Остальные стили остаются без изменений */
 }
 .stageOfWork__block {
   max-height: 328px;
@@ -428,36 +429,11 @@ body.modal-open {
   grid-template-areas: "tl vd" "tx vd";
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(0);
+  transform: translateY(60px); /* ИЗМЕНИТЬ НА translateY */
 }
-.stageOfWork__block:nth-child(odd) {
-  transform: translateX(-60px);
-}
-.stageOfWork__block:nth-child(odd).animate {
+.stageOfWork__block.animate {
   opacity: 1;
-  transform: translateX(0);
-}
-.stageOfWork__block:nth-child(even) {
-  transform: translateX(60px);
-}
-.stageOfWork__block:nth-child(even).animate {
-  opacity: 1;
-  transform: translateX(0);
-}
-.stageOfWork__block:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.stageOfWork__block:nth-child(2) {
-  transition-delay: 0.2s;
-}
-.stageOfWork__block:nth-child(3) {
-  transition-delay: 0.3s;
-}
-.stageOfWork__block:nth-child(4) {
-  transition-delay: 0.4s;
-}
-.stageOfWork__block:nth-child(5) {
-  transition-delay: 0.5s;
+  transform: translateY(0); /* ИЗМЕНИТЬ НА translateY */
 }
 .stageOfWork__block_title {
   grid-area: tl;
